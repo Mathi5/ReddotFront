@@ -11,12 +11,12 @@ import { FooterComponent } from './components/footer/footer.component';
   declarations: [
     AppComponent,
     PostComponent,
+    TopBarComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
     FontAwesomeModule,
-    TopBarComponent,
-    FooterComponent,
   ],
   providers: [],
   bootstrap: [
