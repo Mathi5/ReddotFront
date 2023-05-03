@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-post',
@@ -7,5 +7,6 @@ import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent {
-  faArrowup = faArrowUp;
+  faArrowUp = faArrowUp;
+  faArrowDown = faArrowDown;
 }

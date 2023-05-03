@@ -21,6 +21,7 @@ import { FooterComponent } from './components/footer/footer.component';
   providers: [],
   bootstrap: [
     AppComponent,
+    PostComponent,
     TopBarComponent,
     FooterComponent
   ]

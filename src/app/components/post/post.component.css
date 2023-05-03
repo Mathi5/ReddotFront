@@ -6,9 +6,35 @@
     margin: auto;
     color: white;
     text-align: left;
-    padding-left: 40px;
 }
 
 .post-container:hover {
     border: 1.5px solid #818384;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+}
+
+.title {
+    text-align: center;
+}
+
+.vote {
+    margin: 10px;
+    text-align: center;
+}
+
+.red-icon {
+    margin: auto;
+    color: rgb(255, 94, 0);
+}
+
+.blue-icon {
+    color: rgb(0, 166, 255);
+}
+
+.grey-icon {
+    color: #787a7b;
 }
