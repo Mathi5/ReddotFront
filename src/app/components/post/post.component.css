@@ -1,0 +1,14 @@
+.post-container {
+    background: #151517;
+    width: 60%;
+    min-height: 100px;
+    border: 1.5px solid #28292a;
+    margin: auto;
+    color: white;
+    text-align: left;
+    padding-left: 40px;
+}
+
+.post-container:hover {
+    border: 1.5px solid #818384;
+}
