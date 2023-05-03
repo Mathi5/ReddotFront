@@ -1,9 +1,13 @@
 <div class="post-container">
   <div class="row">
     <div class="vote">
-      <fa-icon [icon]="faArrowUp" class="grey-icon" size="lg"></fa-icon>
+
+      <fa-icon [icon]="faArrowUp" *ngIf="isUpvoted" class="red-icon" size="lg" (click)="upvote()"></fa-icon>
+      <fa-icon [icon]="faArrowUp" *ngIf="!isUpvoted" class="grey-icon hover-red" size="lg" (click)="upvote()"></fa-icon>
       <p>vote</p>
-      <fa-icon [icon]="faArrowDown" class="grey-icon" size="lg"></fa-icon>
+      <fa-icon [icon]="faArrowDown" *ngIf="isDownvoted" class="blue-icon" size="lg" (click)="downvote()"></fa-icon>
+      <fa-icon [icon]="faArrowDown" *ngIf="!isDownvoted" class="grey-icon hover-blue" size="lg" (click)="downvote()"></fa-icon>
+
     </div>
     <div class="title">
       <h3>post works!</h3>

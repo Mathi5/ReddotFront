@@ -26,9 +26,17 @@
     text-align: center;
 }
 
+.hover-red:hover {
+    color: rgba(255, 94, 0, 0.5);
+}
+
 .red-icon {
     margin: auto;
     color: rgb(255, 94, 0);
+}
+
+.hover-blue:hover {
+    color: rgb(0, 166, 255, 0.5);
 }
 
 .blue-icon {

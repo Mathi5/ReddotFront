@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -9,4 +9,16 @@ import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 export class PostComponent {
   faArrowUp = faArrowUp;
   faArrowDown = faArrowDown;
+  isUpvoted = false;
+  isDownvoted = false;
+
+  upvote() {
+    this.isUpvoted = true;
+    this.isDownvoted = false;
+  }
+
+  downvote() {
+    this.isUpvoted = false;
+    this.isDownvoted = true;
+  }
 }
