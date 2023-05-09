@@ -1,18 +1,21 @@
 <!--//make a top bar with login / register and home menu-->
-<div>
-    <div class = "top-bar" >
+<div class="container">
+  <a routerLink="/home" target="">
+    <img class="logo" src="/assets/logo.jpg" alt="Reddot">
+  </a>
+  <div class = "top-bar">
         <div class="top-bar-left">
             <ul class="menu">
                 <li class="menu-text">
-                  <a href="/" target="_blank">Reddot</a>
+
                 </li>
             </ul>
         </div>
         <div class="top-bar-right">
             <ul class="menu">
                 <li class="menu-text">
-                  <a href="/" target="_blank">Register</a>
-                  <a href="/" target="_blank">Login</a>
+                  <a class="link" routerLink="/login" target="">Register</a>
+                  <a class="link" routerLink="/login" target="">Login</a>
                 </li>
             </ul>
         </div>
