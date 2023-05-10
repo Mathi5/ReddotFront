@@ -18,6 +18,7 @@ import {UserService} from "../services/user.service";
 import { CommentComponent } from "./components/comment/comment.component";
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
 import { HomeComponent } from './components/home/home.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { HomeComponent } from './components/home/home.component';
     CommentComponent,
      PostDetailComponent,
      HomeComponent,
+      ProfileComponent,
   ],
   imports: [
     BrowserModule,
