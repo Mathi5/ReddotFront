@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthServiceService } from 'src/services/auth-service.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class ProfileComponent {
 
+  constructor(
+    private authService: AuthServiceService
+  ) { }
 }
