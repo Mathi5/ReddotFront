@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -14,6 +14,7 @@ import { LoginMainPageComponent } from './components/login-main-page/login-main-
 import { AppRoutingModule } from './app-routing.module';
 import {RouterLink} from "@angular/router";
 import {ReactiveFormsModule} from "@angular/forms";
+import { CommentComponent } from './components/comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     FooterComponent,
     LoginMainPageComponent,
 
+    CommentComponent,
   ],
   imports: [
     BrowserModule,

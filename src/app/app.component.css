@@ -5,3 +5,8 @@
   margin: 0;
   padding: 0;
 }
+
+.sub-comment {
+  margin-left: 30px;
+  margin-top: 10px;
+}
