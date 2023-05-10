@@ -1,0 +1,17 @@
+.profile-container {
+    background: #151517;
+    /*background: #ff00c8;*/
+    width: 60%;
+    min-height: 100px;
+    border: 1.5px solid #28292a;
+    margin: auto;
+    color: white;
+    text-align: left;
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.profile-container:hover {
+    border: 1.5px solid #818384;
+}
