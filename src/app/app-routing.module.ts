@@ -13,10 +13,6 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginMainPageComponent,
-  },
-  {
-    path: 'posts',
-    component: PostComponent,
   }
 ];
 

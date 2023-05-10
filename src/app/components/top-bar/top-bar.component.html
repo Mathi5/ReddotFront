@@ -14,8 +14,9 @@
         <div class="top-bar-right">
             <ul class="menu">
                 <li class="menu-text">
-                  <a class="link" routerLink="/login" target="">Register</a>
-                  <a class="link" routerLink="/login" target="">Login</a>
+                  <a *ngIf="!mail" class="link" routerLink="/login" target="">Register</a>
+                  <a *ngIf="!mail" class="link" routerLink="/login" target="">Login</a>
+                  <a *ngIf="mail" class="link" routerLink="/home" target="">{{ mail }}</a>
                 </li>
             </ul>
         </div>

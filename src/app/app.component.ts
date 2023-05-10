@@ -16,8 +16,8 @@ export class AppComponent {
   ) { }
 
   ngOnInit(): void {
-    // this.subReddotService.getSubReddots().subscribe(res => {
-    //   console.log(res);
-    // });
+    this.subReddotService.getSubReddots().subscribe(res => {
+      console.log(res);
+    });
   }
 }

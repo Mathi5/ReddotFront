@@ -1,41 +1,43 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthServiceService {
-  isLoggedIn = false;
   token = '';
 
   constructor(
     private http: HttpClient,
+    private router: Router
   ) {
   }
 
-  login(email: string, password: string) {
-    this.loginValidation(email, password).subscribe(res => {
-      console.log(res);
-      // this.token = res;
+  login(mail: string, password: string) {
+    this.loginValidation(mail, password).subscribe(res => {
+      if (res) {
+          // @ts-ignore
+        localStorage.setItem('token', res['accessToken']);
+        // @ts-ignore
+        localStorage.setItem('userId', res['userId']);
+        //redirect to route home
+        this.router.navigate(['/home']);
+      }
     });
-    // if (this.token) {
-    //   this.isLoggedIn = true;
-    //   console.log('User is logged in');
-    // } else {
-    //   console.log('Invalid credentials');
-    // }
+
+
   }
 
   logout() {
-    this.isLoggedIn = false;
     console.log('User is logged out');
   }
 
-  loginValidation(email: string, password: string) {
+  loginValidation(mail: string, password: string) {
     let body = {
-      email: email,
+      mail: mail,
       password: password
-    }
-    return this.http.put('http://localhost:3000/login/', body);
+    };
+    return this.http.post('http://localhost:3000/login/', body);
   }
 }
