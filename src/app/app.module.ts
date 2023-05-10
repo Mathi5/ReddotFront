@@ -14,6 +14,8 @@ import { LoginMainPageComponent } from './components/login-main-page/login-main-
 import { AppRoutingModule } from './app-routing.module';
 import {RouterLink} from "@angular/router";
 import {ReactiveFormsModule} from "@angular/forms";
+import {UserService} from "../services/user.service";
+import {CommentComponent} from "./components/comment/comment.component";
 
 @NgModule({
   declarations: [
