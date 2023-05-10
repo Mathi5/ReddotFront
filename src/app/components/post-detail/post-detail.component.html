@@ -1,1 +1,21 @@
-<p>post-detail works!</p>
+<div class="post-container">
+
+  <div class="post-section">
+
+    <div class="side-bar"></div>
+
+    <div class="main">
+      <div class="title">
+        {{post?.title}}
+      </div>
+      <div class="content">
+        <img src="{{post?.content}}" alt="">
+        <p *ngIf="post?.media == 'text'">{{post?.content}}</p>
+      </div>
+      <div class="commands"></div>
+    </div>
+
+  </div>
+
+  <div class="comment-section"></div>
+</div>

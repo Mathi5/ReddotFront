@@ -9,9 +9,10 @@
       <fa-icon [icon]="faArrowDown" *ngIf="!isDownvoted" class="grey-icon hover-blue" size="lg" (click)="downvote()"></fa-icon>
 
     </div>
-    <div class="title">
-      <h3>post works!</h3>
-      <img src="https://i.redd.it/mlimrrfl8cxa1.jpg">
+    <div class="title" (click)="goToPost()">
+      <h3>{{post?.title}}</h3>
+      <img [src]="post?.content" *ngIf="post?.media == 'image'">
+      <p *ngIf="post?.media == 'text'">{{post?.content}}</p>
     </div>
   </div>
 </div>

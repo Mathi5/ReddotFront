@@ -47,7 +47,6 @@ import { HomeComponent } from './components/home/home.component';
   bootstrap: [
     AppComponent,
     TopBarComponent,
-    LoginMainPageComponent,
   ]
 })
 export class AppModule { }
