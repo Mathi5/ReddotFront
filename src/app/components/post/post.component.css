@@ -6,6 +6,7 @@
     margin: auto;
     color: white;
     text-align: left;
+    padding: 10px;
 }
 
 .post-container:hover {

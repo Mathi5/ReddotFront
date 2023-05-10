@@ -1,7 +1,7 @@
 <div class="post-container">
   <div class="row">
     <div class="vote">
-
+      
       <fa-icon [icon]="faArrowUp" *ngIf="isUpvoted" class="red-icon" size="lg" (click)="upvote()"></fa-icon>
       <fa-icon [icon]="faArrowUp" *ngIf="!isUpvoted" class="grey-icon hover-red" size="lg" (click)="upvote()"></fa-icon>
       <p>vote</p>
@@ -11,6 +11,7 @@
     </div>
     <div class="title">
       <h3>post works!</h3>
+      <img src="https://i.redd.it/mlimrrfl8cxa1.jpg">
     </div>
   </div>
 </div>

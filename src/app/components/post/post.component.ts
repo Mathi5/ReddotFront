@@ -11,6 +11,7 @@ export class PostComponent {
   faArrowDown = faArrowDown;
   isUpvoted = false;
   isDownvoted = false;
+https: any;
 
   upvote() {
     this.isUpvoted = true;

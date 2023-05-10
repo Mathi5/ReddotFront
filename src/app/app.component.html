@@ -3,7 +3,9 @@
     <p>content</p>
   </div>
   <div class="container">
-    HELLO
-    <app-post></app-post>
+    <app-comment [text]="comment1"></app-comment>
+    <div class="sub-comment">
+      <app-comment [text]="comment2"></app-comment>
+    </div>
   </div>
 </div>

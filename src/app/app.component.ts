@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ProjectNodeFront';
+  comment1 = 'Making the mother of all omelettes here Jack';
+  comment2 = 'Can t fret over every egg';
 }
