@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
+import { Post } from 'src/models/post.model';
 
 @Component({
   selector: 'app-post',
@@ -11,7 +12,9 @@ export class PostComponent {
   faArrowDown = faArrowDown;
   isUpvoted = false;
   isDownvoted = false;
-https: any;
+  https: any;
+
+  @Input() post?:Post;
 
   upvote() {
     this.isUpvoted = true;

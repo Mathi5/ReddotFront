@@ -15,6 +15,8 @@ import { AppRoutingModule } from './app-routing.module';
 import {RouterLink} from "@angular/router";
 import {ReactiveFormsModule} from "@angular/forms";
 import { CommentComponent } from './components/comment/comment.component';
+import { PostDetailComponent } from './components/post-detail/post-detail.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { CommentComponent } from './components/comment/comment.component';
     LoginMainPageComponent,
 
     CommentComponent,
+     PostDetailComponent,
+     HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,8 +46,6 @@ import { CommentComponent } from './components/comment/comment.component';
   bootstrap: [
     AppComponent,
     TopBarComponent,
-    FooterComponent,
-    PostComponent,
     LoginMainPageComponent,
   ]
 })

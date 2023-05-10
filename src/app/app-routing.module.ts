@@ -4,11 +4,13 @@ import {RouterModule, Routes} from "@angular/router";
 import {AppComponent} from "./app.component";
 import {LoginMainPageComponent} from "./components/login-main-page/login-main-page.component";
 import {PostComponent} from "./components/post/post.component";
+import { PostDetailComponent } from './components/post-detail/post-detail.component';
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
   {
     path: 'home',
-    component: AppComponent,
+    component: HomeComponent,
   },
   {
     path: 'login',
@@ -17,6 +19,10 @@ const routes: Routes = [
   {
     path: 'posts',
     component: PostComponent,
+  },
+  {
+    path: 'posts/:id',
+    component: PostDetailComponent,
   }
 ];
 
