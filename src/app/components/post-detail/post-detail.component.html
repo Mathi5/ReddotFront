@@ -23,7 +23,11 @@
       <label>
         Comment:
         <!--<input type="text" formControlName="text" /> -->
-        <textarea type="text" formControlName="text" class="comment-area"></textarea>
+        <textarea
+          type="text"
+          formControlName="text"
+          class="comment-area"
+        ></textarea>
       </label>
       <div class="send-button">
         <button
@@ -35,5 +39,9 @@
         </button>
       </div>
     </form>
+
+    <div class="comment-section">
+      <app-comment *ngFor="let comment of commentsInTree" [comment]="comment"></app-comment>
+    </div>
   </div>
 </div>

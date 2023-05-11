@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { faComment } from '@fortawesome/free-regular-svg-icons';
 import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { CommentWithChildren } from 'src/models/comment-with-children.model';
 
 @Component({
   selector: 'app-comment',
@@ -14,7 +15,8 @@ export class CommentComponent {
   faComment = faComment;
   isUpvoted = false;
   isDownvoted = false;
-  @Input() text = "";
+  @Input() comment?:CommentWithChildren;
+  @Input() index = 0;
 
   upvote() {
     this.isUpvoted = true;

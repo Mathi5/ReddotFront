@@ -20,7 +20,7 @@
 }
 
 .comment-form {
-    width: 90%;
+    width: 96%;
     margin: auto;
 }
 
@@ -33,6 +33,10 @@
 .padding {
     padding-left: 50px;
     padding-right: 50px;
+}
+
+.comment-section {
+    overflow: hidden;
 }
 
 textarea:hover, 
