@@ -25,12 +25,11 @@ export class AuthServiceService {
         this.router.navigate(['/home']);
       }
     });
-
-
   }
 
   logout() {
-    console.log('User is logged out');
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
   }
 
   loginValidation(mail: string, password: string) {

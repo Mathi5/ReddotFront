@@ -19,6 +19,7 @@ import { CommentComponent } from "./components/comment/comment.component";
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
 import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ProfileComponent } from './components/profile/profile.component';
      PostDetailComponent,
      HomeComponent,
       ProfileComponent,
+      RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +51,6 @@ import { ProfileComponent } from './components/profile/profile.component';
   bootstrap: [
     AppComponent,
     TopBarComponent,
-    LoginMainPageComponent,
   ]
 })
 export class AppModule { }
