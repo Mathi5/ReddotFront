@@ -8,32 +8,31 @@ import { AuthServiceService} from "../../../services/auth-service.service";
   styleUrls: ['./login-main-page.component.css']
 })
 export class LoginMainPageComponent {
-
+  
   loginForm: FormGroup;
-
-
+  
+  
   constructor(
     private fb: FormBuilder,
     private authService: AuthServiceService
-  ) {
-    this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-    });
-  }
-
-  updateValue() {
-
-  }
-
-  onSubmit() {
-    if (this.loginForm.valid) {
+    ) {
+      this.loginForm = this.fb.group({
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', [Validators.required, Validators.minLength(8)]],
+      });
+    }
+    
+    updateValue() {
+      
+    }
+    
+    onSubmit() {
       if (this.loginForm.valid) {
         const email = this.loginForm.get('email')!.value;
         const password = this.loginForm.get('password')!.value;
         this.authService.login(email, password);
       }
     }
+    
   }
-
-}
+  
