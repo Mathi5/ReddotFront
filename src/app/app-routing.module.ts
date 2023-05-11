@@ -30,6 +30,7 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
+    canActivate: [ExpenseGuard]
   },
   {
     path: 'register',

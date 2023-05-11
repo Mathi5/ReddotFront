@@ -13,19 +13,16 @@ export class ExpenseGuard implements CanActivate {
     ) {
   }
 
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true;
-  }
-
-  checkLogin(url: string): true | UrlTree {
-    let token = localStorage.getItem('token');
+  canActivate(): boolean {
+    const token = localStorage.getItem('token');
     if (token !== null) {
-      return true;
+        console.log('okay');
+        return true;
     } else {
-      return this.router.parseUrl('/login');
+        console.log('pas okay');
+        this.router.navigate(['/login'])
+        return false
     }
-  }
+}
   
 }

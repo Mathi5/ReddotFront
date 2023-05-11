@@ -30,6 +30,7 @@ export class AuthServiceService {
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('userId');
+    this.router.navigate(['/home']);
   }
 
   loginValidation(mail: string, password: string) {
