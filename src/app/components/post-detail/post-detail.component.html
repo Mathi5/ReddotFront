@@ -41,6 +41,8 @@
     </form>
 
     <div class="comment-section">
+      <ngx-spinner [showSpinner]="isLoading"></ngx-spinner>
+
       <app-comment *ngFor="let comment of commentsInTree" [comment]="comment"></app-comment>
     </div>
   </div>

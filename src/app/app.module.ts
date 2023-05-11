@@ -20,6 +20,7 @@ import { PostDetailComponent } from './components/post-detail/post-detail.compon
 import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import { RegisterComponent } from './components/register/register.component';
     AppRoutingModule,
     RouterLink,
     ReactiveFormsModule,
-
+    NgxSpinnerModule,
   ],
   providers: [
     PostServiceService,

@@ -17,6 +17,7 @@ export class PostDetailComponent {
   post?: Post;
   comments?: Array<Comment>;
   commentsInTree?: Array<CommentWithChildren>;
+  isLoading = true;
   id = '';
   commentForm: FormGroup;
   
@@ -43,6 +44,7 @@ export class PostDetailComponent {
       this.comments = res as Array<Comment>;
       this.commentsInTree = this.convertCommentsToCommentsWithChildren(this.comments);     
       console.log(this.commentsInTree);
+      this.isLoading = false;
     });
   }
 
