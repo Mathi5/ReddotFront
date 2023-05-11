@@ -6,6 +6,8 @@ import {LoginMainPageComponent} from "./components/login-main-page/login-main-pa
 import {PostComponent} from "./components/post/post.component";
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
 import { HomeComponent } from './components/home/home.component';
+import {RegisterComponent} from "./components/register/register.component";
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -23,6 +25,14 @@ const routes: Routes = [
   {
     path: 'posts/:id',
     component: PostDetailComponent,
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
   }
 ];
 

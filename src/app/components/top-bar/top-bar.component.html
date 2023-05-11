@@ -14,9 +14,10 @@
         <div class="top-bar-right">
             <ul class="menu">
                 <li class="menu-text">
-                  <a *ngIf="!mail" class="link" routerLink="/login" target="">Register</a>
+                  <a *ngIf="!mail" class="link" routerLink="/register" target="">Register</a>
                   <a *ngIf="!mail" class="link" routerLink="/login" target="">Login</a>
                   <a *ngIf="mail" class="link" routerLink="/home" target="">{{ mail }}</a>
+                  <button *ngIf="mail" class="link" (click)="logout()">Déconnexion</button>
                 </li>
             </ul>
         </div>

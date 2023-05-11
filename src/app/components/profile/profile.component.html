@@ -1,0 +1,23 @@
+<div class="profile-container">
+    <div *ngIf="!editMode">
+        <p>Hello {{loggedUser.pseudo}} !</p>
+        <p>Mail : {{loggedUser.mail}}</p>
+    </div>
+    <form *ngIf="editMode">
+        <label>
+            Pseudo :
+            <input type="text" value="{{loggedUser.pseudo}}" name="pseudo">
+        </label>
+        <label>
+            Mail :
+            <input type="text" value="{{loggedUser.mail}}" name="mail">
+        </label>
+        <button type="submit" (click)="editMode = !editMode">Save</button>
+    </form>
+    
+    
+    <button routerLink="/profile" target="">Logout</button>
+    <button (click)="editMode = !editMode">Edit profile</button>
+    <p>{{editMode}}</p>
+</div>
+

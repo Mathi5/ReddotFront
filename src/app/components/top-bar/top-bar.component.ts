@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../../services/user.service";
+import {AuthServiceService} from "../../../services/auth-service.service";
 
 @Component({
   selector: 'app-top-bar',
@@ -10,7 +11,8 @@ export class TopBarComponent implements OnInit{
 
   mail: string = '';
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private authService: AuthServiceService,
   ) { }
 
   ngOnInit(): void {
@@ -22,5 +24,11 @@ export class TopBarComponent implements OnInit{
         this.mail = res["mail"];
       } );
     }
+  }
+
+  logout() {
+    console.log('logout');
+    this.authService.logout();
+    this.mail = '';
   }
 }
