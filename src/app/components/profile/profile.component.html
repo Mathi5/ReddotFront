@@ -3,16 +3,28 @@
         <p>Hello {{loggedUser.pseudo}} !</p>
         <p>Mail : {{loggedUser.mail}}</p>
     </div>
-    <form *ngIf="editMode">
+    <form *ngIf="editMode" [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="updateForm">
         <label>
             Pseudo :
-            <input type="text" value="{{loggedUser.pseudo}}" name="pseudo">
+            <input type="text" value="{{loggedUser.pseudo}}" name="pseudo" formControlName="pseudo">
         </label>
         <label>
             Mail :
-            <input type="text" value="{{loggedUser.mail}}" name="mail">
+            <input type="text" value="{{loggedUser.mail}}" name="mail" formControlName="mail">
         </label>
-        <button type="submit" (click)="editMode = !editMode">Save</button>
+        <label>
+            Change Password ?
+            <input type="checkbox" value="" name="changePassword" (click)="updateValidators()">
+        </label>
+        <label *ngIf="changePassword">
+            Password :
+            <input type="password" value="" name="oldPassword" formControlName="oldPassword">
+        </label>
+        <label *ngIf="changePassword">
+            New Password :
+            <input type="password" value="" name="newPassword" formControlName="newPassword">
+        </label>
+        <button type="submit" >Update</button>
     </form>
     
     
