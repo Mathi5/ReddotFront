@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CommentWithChildren } from 'src/models/comment-with-children.model';
+import { Comment } from 'src/models/comment.model';
 import { Post } from 'src/models/post.model';
+import { CommentServiceService } from 'src/services/comment-service.service';
 import { PostServiceService } from 'src/services/post-service.service';
 
 @Component({
@@ -11,10 +15,16 @@ import { PostServiceService } from 'src/services/post-service.service';
 export class PostDetailComponent {
 
   post?: Post;
+  comments?: Array<Comment>;
+  commentsInTree?: Array<CommentWithChildren>;
   id = '';
+  commentForm: FormGroup;
+  
 
-  constructor(private route: ActivatedRoute, private postService: PostServiceService) {
-
+  constructor(private route: ActivatedRoute, private postService: PostServiceService, private commentService:CommentServiceService,private fb:FormBuilder) {
+    this.commentForm = this.fb.group({
+      text: ['', [Validators.required, Validators.minLength(1)]],
+    });
   }
 
   ngOnInit(): void {
@@ -28,5 +38,47 @@ export class PostDetailComponent {
       console.log("the post");
       console.log(this.post);
     });
+
+    this.commentService.getCommentsFromPost(this.id).subscribe(res => {
+      this.comments = res as Array<Comment>;
+      this.commentsInTree = this.convertCommentsToCommentsWithChildren(this.comments);     
+      console.log(this.commentsInTree);
+    })
+  }
+
+  onSubmit() {
+    if (this.commentForm.valid) {
+      if (this.commentForm.valid) {
+        const text = this.commentForm.get('text')!.value;
+        //TODO add comment add service
+        console.log(text);
+      }
+    }
+  }
+
+  //TOUCHE PAS CA MARCHE
+  convertCommentToCommentWithChildren(comment: Comment, comments: Comment[]): CommentWithChildren {
+    const commentWithChildren: CommentWithChildren = {
+      _id: comment._id,
+      content: comment.content,
+      commentUser: comment.commentUser,
+      commentPost: comment.commentPost
+    };
+    
+    const children = comments.filter(c => c.parent === comment._id);
+    console.log("children");
+    console.log(children);
+
+    if (children.length > 0) {
+      commentWithChildren.children = children.map(c => this.convertCommentToCommentWithChildren(c, comments));
+    }
+    
+    return commentWithChildren;
+  }
+  
+  convertCommentsToCommentsWithChildren(comments: Comment[]): CommentWithChildren[] {
+    const rootComments = comments.filter(c => !c.parent);
+    
+    return rootComments.map(c => this.convertCommentToCommentWithChildren(c, comments));
   }
 }

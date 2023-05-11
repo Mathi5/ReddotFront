@@ -1,3 +1,54 @@
-.post-container {
+.post-container, .comment-container {
     background-color: #151517;
+    color: white;
+}
+
+.comment-area {
+    display: block;
+    height: 175px;
+    background-color: transparent;
+    color: white;
+    width: 100%;
+}
+
+.comment-area:hover {
+    border: 1px solid white;
+}
+
+.comment-area:focus {
+    border: 1px solid white;
+}
+
+.comment-form {
+    width: 90%;
+    margin: auto;
+}
+
+.send-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
+.padding {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+textarea:hover, 
+input:hover, 
+textarea:active, 
+input:active, 
+textarea:focus, 
+input:focus,
+button:focus,
+button:active,
+button:hover,
+label:focus,
+.btn:active,
+.btn.active
+{
+    outline:0px !important;
+    -webkit-appearance:none;
+    box-shadow: none !important;
 }
