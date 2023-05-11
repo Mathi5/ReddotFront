@@ -1,1 +1,39 @@
-<p>post-detail works!</p>
+<div class="padding">
+  <div class="post-container">
+    <div class="side-bar"></div>
+
+    <div class="main">
+      <div class="title">
+        {{ post?.title }}
+      </div>
+      <div class="content">
+        <img src="{{ post?.content }}" alt="" />
+        <p *ngIf="post?.media == 'text'">{{ post?.content }}</p>
+      </div>
+      <div class="commands"></div>
+    </div>
+  </div>
+
+  <div class="comment-container">
+    <form
+      [formGroup]="commentForm"
+      (ngSubmit)="onSubmit()"
+      class="comment-form"
+    >
+      <label>
+        Comment:
+        <!--<input type="text" formControlName="text" /> -->
+        <textarea type="text" formControlName="text" class="comment-area"></textarea>
+      </label>
+      <div class="send-button">
+        <button
+          type="submit"
+          [disabled]="!commentForm.valid"
+          class="send-button"
+        >
+          Send
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

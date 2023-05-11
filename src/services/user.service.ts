@@ -41,7 +41,7 @@ export class UserService {
     return this.http.post('http://localhost:3000/users/checkmail', body, {headers: this.headers});
   }
 
-  checkUser(mail: string, pseudo: string) {
+  checkUserData(mail: string, pseudo: string) {
     return new Observable(observer => {
       this.checkUserMail(mail).subscribe((res) => {
         console.log(res);
@@ -55,7 +55,6 @@ export class UserService {
       });
     });
   }
-
 
   register(pseudo: string, mail: string, password: string) {
     this.initHeaders();

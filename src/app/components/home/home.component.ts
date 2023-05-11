@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Post } from 'src/models/post.model';
+import { PostServiceService } from 'src/services/post-service.service';
 
 @Component({
   selector: 'app-home',
@@ -7,5 +8,14 @@ import { Post } from 'src/models/post.model';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  post:Post = {id: '', title:'', content:'', media:'', postUser:'', postSub:''};
+  posts?:Array<Post>;
+  constructor(private postService:PostServiceService) {
+
+  }
+
+  async ngOnInit(): Promise<void> {
+    this.postService.getPosts().subscribe(res => {
+      this.posts = res as Array<Post>;
+    });
+  }
 }

@@ -22,10 +22,6 @@ export class LoginMainPageComponent {
       });
     }
     
-    updateValue() {
-      
-    }
-    
     onSubmit() {
       if (this.loginForm.valid) {
         const email = this.loginForm.get('email')!.value;

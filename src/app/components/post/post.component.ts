@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { Post } from 'src/models/post.model';
 
@@ -16,6 +17,9 @@ export class PostComponent {
 
   @Input() post?:Post;
 
+  constructor(private router:Router) {
+  }
+
   upvote() {
     this.isUpvoted = true;
     this.isDownvoted = false;
@@ -24,5 +28,9 @@ export class PostComponent {
   downvote() {
     this.isUpvoted = false;
     this.isDownvoted = true;
+  }
+
+  goToPost() {
+    this.router.navigate(['/posts', this.post?._id])
   }
 }
