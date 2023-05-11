@@ -8,6 +8,7 @@ import { PostDetailComponent } from './components/post-detail/post-detail.compon
 import { HomeComponent } from './components/home/home.component';
 import {RegisterComponent} from "./components/register/register.component";
 import { ProfileComponent } from './components/profile/profile.component';
+import { ExpenseGuard } from './expense.guard';
 
 const routes: Routes = [
   {
