@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from "rxjs";
+import { User } from 'src/models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,12 @@ export class UserService {
     this.initHeaders();
     const userId = localStorage.getItem('userId');
     return this.http.get('http://localhost:3000/users/' + userId, {headers: this.headers});
+  }
+
+  updateUser(updatedUser: User) {
+    this.initHeaders();
+    const userId = localStorage.getItem('userId');
+    return this.http.put(`http://localhost:3000/users/${userId}`, updatedUser, {headers: this.headers});
   }
 
   checkUserPseudo(pseudo: string) {

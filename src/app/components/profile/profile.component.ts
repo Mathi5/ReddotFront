@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/models/user.model';
 import { AuthServiceService } from 'src/services/auth-service.service';
+import { UserService } from 'src/services/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -10,17 +11,17 @@ import { AuthServiceService } from 'src/services/auth-service.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent {
-  userId = "";
   loggedUser: User = {id: '', mail: '', pseudo: '', password: '', userPosts: [], userSubscribes: []};
   editMode = false;
   changePassword = false;
   
   profileForm: FormGroup;
-
+  
   
   constructor(
     private fb: FormBuilder,
-    private http: HttpClient
+    private http: HttpClient,
+    private userService: UserService
     ) {
       this.profileForm = this.fb.group({
         pseudo: ['', [Validators.required, Validators.minLength(3)]],
@@ -31,17 +32,12 @@ export class ProfileComponent {
     }
     
     ngOnInit(): void {
-      // @ts-ignore
-      this.userId = localStorage.getItem('userId');
       
-      this.getUser(this.userId).subscribe(res => {
-        this.loggedUser = res as User;
+      this.userService.getUser().subscribe(res => {
+        // @ts-ignore
+        this.loggedUser = res;
       });
       
-    }
-    
-    getUser(id: string) {
-      return this.http.get(`http://localhost:3000/users/${id}`);
     }
     
     onSubmit() {
@@ -56,19 +52,25 @@ export class ProfileComponent {
         updatedUser.userSubscribes = this.loggedUser.userSubscribes;
         
         const oldPassword = this.profileForm.get('oldPassword')!.value;
+
         if (this.changePassword && this.checkPassword(oldPassword)) {
           const newPassword = this.profileForm.get('newPassword')!.value;
           updatedUser.password = newPassword;
         } else {
           updatedUser.password = this.loggedUser.password;
         }
-        this.updateUser(updatedUser);
-        
-        this.editMode = false;
-
-        this.getUser(this.userId).subscribe(res => {
-          this.loggedUser = res as User;
+        this.userService.updateUser(updatedUser).subscribe(res => {
+          console.log(res);
+          
+          this.editMode = false;
+          this.changePassword = false;
+          
+          this.userService.getUser().subscribe(res => {
+            // @ts-ignore
+            this.loggedUser = res;
+          });
         });
+        
       }
     }
     
@@ -79,12 +81,6 @@ export class ProfileComponent {
       return true;
     }
     
-    updateUser(updatedUser: User) {
-      this.http.put(`http://localhost:3000/users/${this.userId}`, updatedUser).subscribe(res => {
-      console.log(res);
-      });
-    }
-
     updateValidators() {
       this.changePassword = !this.changePassword
       if (this.changePassword) {
@@ -97,4 +93,5 @@ export class ProfileComponent {
       this.profileForm.controls['oldPassword'].updateValueAndValidity();
       this.profileForm.controls['newPassword'].updateValueAndValidity();
     }
-}
+  }
+  
