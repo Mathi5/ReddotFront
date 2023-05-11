@@ -5,5 +5,5 @@ export interface CommentWithChildren {
     content:String;
     commentUser:String;
     commentPost:String;
-    children?:Array<Comment>;
+    children?:Array<CommentWithChildren>;
 }

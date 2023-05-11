@@ -1,8 +1,8 @@
-<div class="comment-container">
+<div class="comment-container" [style]="{'padding-left': 30 + 30*index + 'px'}">
 
     <!--User-->
   <div class="user">
-    <div class="user-icon">Lynoma</div>
+    <div class="user-icon">{{comment?.commentUser}}</div>
   </div>
 
   <!--White bar and comment content-->
@@ -12,7 +12,7 @@
     </div>
     <div class="comment">
       <div class="comment-content">
-        {{ text }}
+        {{ comment?.content }}
       </div>
     </div>
   </div>
@@ -32,3 +32,5 @@
     </div>
   </div>
 </div>
+
+<app-comment *ngFor="let com of comment?.children" [comment]="com" [index]="index + 1"></app-comment>

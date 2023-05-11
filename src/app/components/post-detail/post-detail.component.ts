@@ -43,7 +43,7 @@ export class PostDetailComponent {
       this.comments = res as Array<Comment>;
       this.commentsInTree = this.convertCommentsToCommentsWithChildren(this.comments);     
       console.log(this.commentsInTree);
-    })
+    });
   }
 
   onSubmit() {
