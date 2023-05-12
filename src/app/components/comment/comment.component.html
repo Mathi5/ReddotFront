@@ -2,7 +2,7 @@
 
     <!--User-->
   <div class="user">
-    <div class="user-icon">{{comment?.commentUser}}</div>
+    <div class="user-icon">{{username}}</div>
   </div>
 
   <!--White bar and comment content-->
@@ -27,7 +27,7 @@
     <fa-icon *ngIf="isDownvoted" [icon]="faArrowDown" size="lg" class="blue-icon" (click)="downvote()"></fa-icon>
     <fa-icon *ngIf="!isDownvoted" [icon]="faArrowDown" size="lg" class="grey-icon hover-blue" (click)="downvote()"></fa-icon>
     <fa-icon [icon]="faComment" class="comment-icon"></fa-icon>
-    <div class="comment">
+    <div class="comment" (click)="respondToComment()">
         Comment
     </div>
   </div>

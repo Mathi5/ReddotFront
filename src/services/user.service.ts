@@ -26,6 +26,18 @@ export class UserService {
     return this.http.get('http://localhost:3000/users/' + userId, {headers: this.headers});
   }
 
+  getUserById(userId:string) {
+    this.initHeaders();
+    console.log('user id is : ',userId);
+    return this.http.get('http://localhost:3000/users/' + userId, {headers: this.headers});
+  }
+
+  getUserId():String {
+    this.initHeaders();
+    const userId = localStorage.getItem('userId');
+    return userId ?? '';
+  }
+
   updateUser(updatedUser: User) {
     this.initHeaders();
     const userId = localStorage.getItem('userId');
