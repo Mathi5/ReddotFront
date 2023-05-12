@@ -34,6 +34,13 @@ export class TopBarComponent implements OnInit{
 
   ngOnInit(): void {
     console.log('top bar');
+    this.init();
+    UserService.getUserAsObservable().subscribe(res => {
+      this.init();
+    });
+    this.getSubReddots();
+  }
+  init() {
     const userId = localStorage.getItem('userId');
     if (userId) {
       this.userService.getUser().subscribe(res => {
@@ -41,8 +48,9 @@ export class TopBarComponent implements OnInit{
         this.mail = res["mail"];
       } );
     }
-    this.getSubReddots();
   }
+
+
 
   getSubReddots() {
     this.subReddotService.getSubReddots().subscribe(res => {

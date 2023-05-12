@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from "rxjs";
+import {Observable, Subject} from "rxjs";
 import { User } from 'src/models/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  user: User = {} as User;
+  static userSubject = new Subject<User>();
 
   headers : HttpHeaders | undefined;
   constructor(
@@ -28,7 +30,6 @@ export class UserService {
 
   getUserById(userId:string) {
     this.initHeaders();
-    console.log('user id is : ',userId);
     return this.http.get('http://localhost:3000/users/' + userId, {headers: this.headers});
   }
 
@@ -63,7 +64,6 @@ export class UserService {
   checkUserData(mail: string, pseudo: string) {
     return new Observable(observer => {
       this.checkUserMail(mail).subscribe((res) => {
-        console.log(res);
         if (res) {
           return this.checkUserPseudo(pseudo).subscribe((res) => {
             return res ? observer.next(true) : observer.next(false);
@@ -83,5 +83,15 @@ export class UserService {
       password: password
     }
     return this.http.post('http://localhost:3000/users/', body, {headers: this.headers});
+  }
+
+  initUser() {
+    this.getUser().subscribe((res) => {
+      this.user = res as User;
+      UserService.userSubject.next(res as User);
+    });
+  }
+  public static getUserAsObservable() {
+    return UserService.userSubject.asObservable();
   }
 }

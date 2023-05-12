@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Router} from "@angular/router";
+import {UserService} from "./user.service";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ export class AuthServiceService {
 
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private userService: UserService,
   ) {
   }
 
@@ -23,6 +25,7 @@ export class AuthServiceService {
         localStorage.setItem('userId', res['userId']);
         //redirect to route home
         this.router.navigate(['/home']);
+        this.userService.initUser();
       }
     });
   }

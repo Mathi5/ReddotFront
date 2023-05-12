@@ -28,6 +28,11 @@
                           </a>
                           <fa-icon class="faChevronRight" [icon]="faChevronRight"></fa-icon>
                         </li>
+                        <ng-container *ngIf="searchResults.length == 0">
+                          <li class="results">
+                            No results found
+                          </li>
+                        </ng-container>
                       </ul>
                     </div>
                   </div>
