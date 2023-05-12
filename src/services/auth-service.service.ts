@@ -30,6 +30,7 @@ export class AuthServiceService {
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('userId');
+    this.router.navigate(['/home']);
   }
 
   loginValidation(mail: string, password: string) {
@@ -39,4 +40,5 @@ export class AuthServiceService {
     };
     return this.http.post('http://localhost:3000/login/', body);
   }
+
 }

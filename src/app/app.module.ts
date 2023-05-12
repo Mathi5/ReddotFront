@@ -21,6 +21,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { ExpenseGuard } from './expense.guard';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
     PostServiceService,
     SubReddotService,
     UserService,
+    ExpenseGuard
   ],
   bootstrap: [
     AppComponent,
