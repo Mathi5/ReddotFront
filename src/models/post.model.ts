@@ -1,8 +1,8 @@
 export interface Post {
-    _id:String;
-    title:String;
-    content:String;
-    media:String;
-    postUser:String;
-    postSub:String;
+    _id:string;
+    title:string;
+    content:string;
+    media:string;
+    postUser:string;
+    postSub:string;
 }

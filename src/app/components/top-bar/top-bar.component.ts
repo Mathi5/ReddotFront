@@ -4,6 +4,7 @@ import {AuthServiceService} from "../../../services/auth-service.service";
 import { faPlus, faUser, faRightFromBracket, faRightToBracket, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import {SubReddotService} from "../../../services/sub-reddot.service";
 import {Subreddot} from "../../../models/subreddot.model";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-top-bar',
@@ -28,6 +29,7 @@ export class TopBarComponent implements OnInit{
     private userService: UserService,
     private authService: AuthServiceService,
     private subReddotService: SubReddotService,
+    private router: Router,
   ) {
     this.subreddots = [];
   }
@@ -94,4 +96,5 @@ export class TopBarComponent implements OnInit{
       this.focus = false;
     }, 100);
   }
+
 }

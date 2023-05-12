@@ -45,7 +45,7 @@ export class SubreddotComponent implements OnInit {
       });
     }
 
-    addPost() {
+    /*addPost() {
       console.log(this.user.id);
 
         const userId =  localStorage.getItem('userId');
@@ -56,5 +56,5 @@ export class SubreddotComponent implements OnInit {
           });
         }
 
-    }
+    }*/
 }

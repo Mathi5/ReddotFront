@@ -9,7 +9,8 @@
     <h2 *ngIf="subreddot">r/{{ subreddot.name }}</h2>
     <h4 *ngIf="subreddot">{{ subreddot.description }}</h4>
     <button>
-      <fa-icon [icon]="faPlus" (click)="addPost()" size="lg">Subreddot</fa-icon>
+      <!--<fa-icon [icon]="faPlus" (click)="addPost()" size="lg">Subreddot</fa-icon>-->
+      <fa-icon [icon]="faPlus" routerLink="/addPost/{{ subreddotId }}" size="lg">Subreddot</fa-icon>
 
     </button>
   </div>

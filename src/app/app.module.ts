@@ -24,6 +24,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { ExpenseGuard } from './expense.guard';
 import { AddSubbreddotComponent } from './components/add-subbreddot/add-subbreddot.component';
 import { SubreddotComponent } from './components/subreddot/subreddot.component';
+import { AddPostComponent } from './components/add-post/add-post.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { SubreddotComponent } from './components/subreddot/subreddot.component';
       RegisterComponent,
       AddSubbreddotComponent,
       SubreddotComponent,
+      AddPostComponent,
   ],
   imports: [
     BrowserModule,

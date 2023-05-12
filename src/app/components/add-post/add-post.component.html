@@ -1,0 +1,16 @@
+<form [formGroup]="addPostForm" (ngSubmit)="onSubmit()" class="addpost-container">
+    <label>
+        Title:
+        <input type="text" value="" formControlName="title" name="title">
+    </label>
+    <label>
+        Content:
+        <input type="text" value="" formControlName="content" name="content">
+    </label>
+    <label>
+        Upload file:
+        <input type="file" value="" accept="image/*" id="file" name="file">
+    </label>
+    <button type="submit">Publish</button>
+
+</form>>

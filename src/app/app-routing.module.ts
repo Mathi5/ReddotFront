@@ -11,6 +11,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { ExpenseGuard } from './expense.guard';
 import {AddSubbreddotComponent} from "./components/add-subbreddot/add-subbreddot.component";
 import {SubreddotComponent} from "./components/subreddot/subreddot.component";
+import { AddPostComponent } from './components/add-post/add-post.component';
 
 const routes: Routes = [
   {
@@ -45,6 +46,10 @@ const routes: Routes = [
   {
     path: 'subreddot/:id',
     component: SubreddotComponent,
+  },
+  {
+    path: 'addPost/:id',
+    component: AddPostComponent,
   }
 ];
 
