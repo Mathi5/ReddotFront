@@ -13,7 +13,7 @@ import { SubReddotService } from '../services/sub-reddot.service';
 import { LoginMainPageComponent } from './components/login-main-page/login-main-page.component';
 import { AppRoutingModule } from './app-routing.module';
 import {RouterLink} from "@angular/router";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {UserService} from "../services/user.service";
 import { CommentComponent } from "./components/comment/comment.component";
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
@@ -22,6 +22,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { ExpenseGuard } from './expense.guard';
+import { AddSubbreddotComponent } from './components/add-subbreddot/add-subbreddot.component';
+import { SubreddotComponent } from './components/subreddot/subreddot.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { ExpenseGuard } from './expense.guard';
      HomeComponent,
       ProfileComponent,
       RegisterComponent,
+      AddSubbreddotComponent,
+      SubreddotComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +47,7 @@ import { ExpenseGuard } from './expense.guard';
     AppRoutingModule,
     RouterLink,
     ReactiveFormsModule,
+    FormsModule,
     NgxSpinnerModule,
   ],
   providers: [

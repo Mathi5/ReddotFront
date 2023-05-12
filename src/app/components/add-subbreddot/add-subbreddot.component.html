@@ -1,0 +1,17 @@
+
+<form class="container" [formGroup]="sbForm" (ngSubmit)="onSubmit()">
+  <label>
+    Name:
+    <input type="text" formControlName="name">
+  </label>
+  <label>
+    Image URL:
+    <input type="text" formControlName="imageUrl">
+  </label>
+  <label>
+    Description:
+  </label>
+  <textarea type="text" formControlName="description"></textarea>
+  <button type="submit" [disabled]="!sbForm.valid">Add SubReddot</button>
+</form>
+

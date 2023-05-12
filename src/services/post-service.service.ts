@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class PostServiceService {
-
+  headers: HttpHeaders | undefined;
   constructor(
     private http: HttpClient,
     private router: Router
@@ -14,11 +14,38 @@ export class PostServiceService {
 
   }
 
+  initHeaders() {
+    this.headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+  }
+
   getPosts() {
-    return this.http.get(`http://localhost:3000/posts/`);
+    this.initHeaders();
+    return this.http.get(`http://localhost:3000/posts/`, {headers: this.headers});
   }
 
   getPostById(id: string) {
-    return this.http.get(`http://localhost:3000/posts/${id}`);
+    this.initHeaders();
+    return this.http.get(`http://localhost:3000/posts/${id}`, {headers: this.headers});
+  }
+
+  addPost(subReddotId: string, title: string, content: string, media: string, userId: string) {
+    this.initHeaders();
+    const body = {
+      title: title,
+      content: content,
+      postSub: subReddotId,
+      postUser: userId,
+      media: media
+    }
+
+    return this.http.post('http://localhost:3000/posts/', body, {headers: this.headers});
+  }
+
+  getPostBySubId(id: string) {
+    this.initHeaders();
+    return this.http.get(`http://localhost:3000/posts/sub/${id}`, {headers: this.headers});
   }
 }

@@ -14,10 +14,10 @@ export class ProfileComponent {
   loggedUser: User = {id: '', mail: '', pseudo: '', password: '', userPosts: [], userSubscribes: []};
   editMode = false;
   changePassword = false;
-  
+
   profileForm: FormGroup;
-  
-  
+
+
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
@@ -30,16 +30,16 @@ export class ProfileComponent {
         newPassword: [''],
       });
     }
-    
+
     ngOnInit(): void {
-      
+
       this.userService.getUser().subscribe(res => {
         // @ts-ignore
         this.loggedUser = res;
       });
-      
+
     }
-    
+
     onSubmit() {
       if (this.profileForm.valid) {
         var updatedUser: User = {id: '', mail: '', pseudo: '', password: '', userPosts: [], userSubscribes: []};
@@ -50,7 +50,7 @@ export class ProfileComponent {
         updatedUser.mail = mail;
         updatedUser.userPosts = this.loggedUser.userPosts;
         updatedUser.userSubscribes = this.loggedUser.userSubscribes;
-        
+
         const oldPassword = this.profileForm.get('oldPassword')!.value;
 
         if (this.changePassword && this.checkPassword(oldPassword)) {
@@ -61,26 +61,23 @@ export class ProfileComponent {
         }
         this.userService.updateUser(updatedUser).subscribe(res => {
           console.log(res);
-          
+
           this.editMode = false;
           this.changePassword = false;
-          
+
           this.userService.getUser().subscribe(res => {
             // @ts-ignore
             this.loggedUser = res;
           });
         });
-        
+
       }
     }
-    
+
     checkPassword(oldPassword: string) {
-      if (oldPassword !== this.loggedUser.password) {
-        return false;
-      }
-      return true;
+      return oldPassword === this.loggedUser.password;
     }
-    
+
     updateValidators() {
       this.changePassword = !this.changePassword
       if (this.changePassword) {
@@ -94,4 +91,3 @@ export class ProfileComponent {
       this.profileForm.controls['newPassword'].updateValueAndValidity();
     }
   }
-  

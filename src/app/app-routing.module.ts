@@ -9,6 +9,8 @@ import { HomeComponent } from './components/home/home.component';
 import {RegisterComponent} from "./components/register/register.component";
 import { ProfileComponent } from './components/profile/profile.component';
 import { ExpenseGuard } from './expense.guard';
+import {AddSubbreddotComponent} from "./components/add-subbreddot/add-subbreddot.component";
+import {SubreddotComponent} from "./components/subreddot/subreddot.component";
 
 const routes: Routes = [
   {
@@ -35,6 +37,14 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent,
+  },
+  {
+    path: 'addSubreddot',
+    component: AddSubbreddotComponent
+  },
+  {
+    path: 'subreddot/:id',
+    component: SubreddotComponent,
   }
 ];
 

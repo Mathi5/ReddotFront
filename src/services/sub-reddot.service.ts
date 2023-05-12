@@ -6,17 +6,38 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 })
 export class SubReddotService {
 
+  headers: HttpHeaders | undefined;
   constructor(
     private http: HttpClient,
   ) {  }
 
-  getSubReddots() {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
+  initHeaders() {
+    this.headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
     });
-    return this.http.get('http://localhost:3000/subreddots/', {headers: headers});
+  }
+  getSubReddots() {
+    this.initHeaders();
+    return this.http.get('http://localhost:3000/subreddots/', {headers: this.headers});
   }
 
+  getSubReddot(id: string) {
+    this.initHeaders();
+    return this.http.get('http://localhost:3000/subreddots/' + id, {headers: this.headers});
+  }
+
+  addSubReddot(name: string, description: string, icon: string) {
+    this.initHeaders();
+
+    const body = {
+      name: name,
+      description: description,
+      icon: icon,
+    }
+
+    return this.http.post('http://localhost:3000/subreddots/', body, {headers: this.headers});
+  }
 
 
 }

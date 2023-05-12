@@ -7,17 +7,51 @@
         <div class="top-bar-left">
             <ul class="menu">
                 <li class="menu-text">
-
+                  <a class="link" routerLink="/addSubreddot" target="">
+                    <fa-icon [icon]="faPlus" size="lg"></fa-icon>
+                      Subreddot
+                  </a>
+                  <div class="link">
+                    <input
+                      id="search-bar"
+                      type="text"
+                      [(ngModel)]="search"
+                      (input)="searchForSubbreddot()"
+                      (focusin)="focusInSearch()"
+                      (focusout)="focusOutSearch()"
+                      placeholder="Search">
+                    <div>
+                      <ul *ngIf="focus" class="search-results">
+                        <li class="results" *ngFor="let subreddot of searchResults">
+                          <a routerLink="/subreddot/{{ subreddot._id }}" target="">
+                            {{ subreddot.name }}
+                          </a>
+                          <fa-icon class="faChevronRight" [icon]="faChevronRight"></fa-icon>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
                 </li>
             </ul>
         </div>
         <div class="top-bar-right">
             <ul class="menu">
                 <li class="menu-text">
-                  <a *ngIf="!mail" class="link" routerLink="/register" target="">Register</a>
-                  <a *ngIf="!mail" class="link" routerLink="/login" target="">Login</a>
-                  <a *ngIf="mail" class="link" routerLink="/profile" target="">{{ mail }}</a>
-                  <button *ngIf="mail" class="link" (click)="logout()">Déconnexion</button>
+                  <a *ngIf="!mail" class="link" routerLink="/register" target="">
+                    Register
+                  </a>
+                  <a *ngIf="!mail" class="link" routerLink="/login" target="">
+                    <fa-icon [icon]="faRightToBracket" size="lg"></fa-icon>
+                    Login
+                  </a>
+                  <a *ngIf="mail" class="link" routerLink="/profile" target="">
+                    <fa-icon [icon]="faUser" size="lg"></fa-icon>
+                    {{ mail }}
+                  </a>
+                  <button *ngIf="mail" class="link" (click)="logout()">
+                    <fa-icon [icon]="faRightFromBracket" size="lg"></fa-icon>
+                    Logout
+                  </button>
                 </li>
             </ul>
         </div>

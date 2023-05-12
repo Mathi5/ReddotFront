@@ -48,3 +48,14 @@ input {
   font-size: 1em;
   border-radius: 5px;
 }
+
+textarea {
+  text-decoration: none;
+  background-color: white;
+  color: black;
+  font-size: 1em;
+  border-radius: 5px;
+  width: 30vw;
+  height: 100px;
+  margin-bottom: 30px;
+}
