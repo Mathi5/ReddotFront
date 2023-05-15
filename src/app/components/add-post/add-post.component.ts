@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from 'src/models/post.model';
 import { PostServiceService } from 'src/services/post-service.service';
 import { JSON_parse } from 'uint8array-json-parser';
@@ -12,17 +12,28 @@ import { JSON_parse } from 'uint8array-json-parser';
   styleUrls: ['./add-post.component.css']
 })
 export class AddPostComponent {
-  newPost: Post = { _id:'', title:'', media:'', content:'', file: new Uint8Array, postUser:'', postSub:'' };
+  newPost: Post = {
+    _id:'',
+    title:'',
+    media:'',
+    content:'',
+    file: new Uint8Array,
+    postUser:'',
+    postSub:'',
+    postUpvotes: [''],
+    postDownvotes: ['']
+  };
 
   addPostForm: FormGroup;
 
-  
+
 
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
     private postService: PostServiceService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router:Router
     ) {
       this.addPostForm = this.fb.group({
         title: ['', [Validators.required]],
@@ -32,8 +43,7 @@ export class AddPostComponent {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(res => {
-      const subId = res.get('id') ?? '';
-      this.newPost.postSub = subId;
+      this.newPost.postSub = res.get('id') ?? '';
     });
   }
 
@@ -67,7 +77,7 @@ export class AddPostComponent {
         this.newPost.media = 'picture';
         this.newPost.content = '';
 
-        
+
 
         const imageFile = formFile.files!.item(0);
 
@@ -77,34 +87,39 @@ export class AddPostComponent {
 
           reader.onloadend = () => {
             const imageArrayBuffer = reader.result! as ArrayBuffer; // Récupérer le contenu de l'image sous forme d'ArrayBuffer
-      
+
             // Convertir l'ArrayBuffer en Uint8Array
             const imageUint8Array = new Uint8Array(imageArrayBuffer);
             console.log('imageUint8Array : ' + imageUint8Array);
-      
+
             // Appeler la fonction pour enregistrer l'image dans Firebase Cloud Storage
-            
+
             //this.newPost.file = imageUint8Array;
             // const imageBuffer = JSON.stringify(imageUint8Array);
             // console.log('imageBuffer : ' + imageBuffer);
             // const parsedImage = JSON.parse(imageBuffer);
             // console.log('parsedImage : ' + parsedImage);
 
-            const parsedImage = JSON_parse(imageUint8Array);
-            console.log('parsedImage : ' + parsedImage);
-            this.newPost.file = parsedImage;
+            const fileString = reader.result!.toString();
+            const base64String = fileString.replace("data:", "")
+                .replace(/^.+,/, "");
+            console.log('base64String : ' + base64String);
 
+            this.newPost.file = base64String;
 
             this.postService.addPost(this.newPost.postSub, this.newPost.title, this.newPost.content, this.newPost.media, this.newPost.file, loggedUser ).subscribe(res => {
               console.log(res);
+              //redirect to subreddot page
+              this.router.navigate(['/subreddot/' + this.newPost.postSub]);
             });
           };
-      
-          reader.readAsArrayBuffer(imageFile); // Lire le fichier en tant qu'ArrayBuffer
+
+          //reader.readAsArrayBuffer(imageFile); // Lire le fichier en tant qu'ArrayBuffer
+          reader.readAsDataURL(imageFile);
         }
       }
-      
-      
+
+
     }
   }
 

@@ -7,4 +7,6 @@ export interface Post {
     file: any;
     postUser:string;
     postSub:string;
+    postUpvotes: Array<string>;
+    postDownvotes: Array<string>;
 }
