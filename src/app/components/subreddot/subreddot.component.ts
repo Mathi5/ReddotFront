@@ -20,6 +20,8 @@ export class SubreddotComponent implements OnInit {
     posts: Array<Post> = [];
     user: User = {} as User;
     faPlus = faPlus;
+    isSubscribed: boolean = false;
+    isLogged: boolean = false;
 
     constructor(
       private route: ActivatedRoute,
@@ -28,33 +30,39 @@ export class SubreddotComponent implements OnInit {
       private userService: UserService,
     ) {
       this.subreddotId = this.route.snapshot.params['id'];
+      this.isLogged = this.userService.isLogged();
     }
 
     ngOnInit(): void {
-      this.subReddotService.getSubReddot(this.subreddotId).subscribe(res => {
-        this.subreddot = res as Subreddot;
-        console.log(this.subreddot);
-      });
-      console.log(this.subreddotId);
+      this.init();
       this.postService.getPostBySubId(this.subreddotId).subscribe(res => {
         this.posts = res as Array<Post>;
       });
       this.userService.getUser().subscribe(res => {
         this.user = res as User;
-
       });
     }
 
-    /*addPost() {
-      console.log(this.user.id);
+    init() {
+      this.subReddotService.getSubReddot(this.subreddotId).subscribe(res => {
+        this.subreddot = res as Subreddot;
+      });
+      this.userService.isSubscribedToSubreddot(this.subreddotId).subscribe(res => {
+        this.isSubscribed = res as boolean;
+      });
+    }
 
-        const userId =  localStorage.getItem('userId');
-        if (userId) {
-
-          this.postService.addPost(this.subreddotId, 'test', 'content', "gr", userId).subscribe(res => {
-            console.log(res);
-          });
-        }
-
-    }*/
+  subscribeToSubreddot() {
+      if (this.isSubscribed) {
+        this.isSubscribed = false;
+        this.userService.unsubscribeToSubreddot(this.subreddotId).subscribe(res => {
+          this.init();
+        });
+      } else {
+        this.isSubscribed = true;
+        this.userService.subscribeToSubreddot(this.subreddotId).subscribe(res => {
+          this.init();
+        });
+      }
+  }
 }

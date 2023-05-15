@@ -57,6 +57,11 @@ export class PostComponent {
   }
 
   async upvote() {
+    if (localStorage.getItem('userId') == null) {
+      this.router.navigate(['/login']);
+      return;
+    }
+    console.log("UPVOTE");
     if(this.isUpvoted) {
       this.isUpvoted = false;
       if(this.post) {
@@ -79,6 +84,11 @@ export class PostComponent {
   }
 
   async downvote() {
+    if (localStorage.getItem('userId') == null) {
+      this.router.navigate(['/login']);
+      return;
+    }
+    console.log("DOWNVOTE");
     if(this.isDownvoted) {
       this.isDownvoted = false;
 
