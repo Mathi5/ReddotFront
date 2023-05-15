@@ -7,7 +7,7 @@
         <div class="top-bar-left">
             <ul class="menu">
                 <li class="menu-text">
-                  <a class="link" routerLink="/addSubreddot" target="">
+                  <a *ngIf="mail" class="link" routerLink="/addSubreddot" target="">
                     <fa-icon [icon]="faPlus" size="lg"></fa-icon>
                       Subreddot
                   </a>

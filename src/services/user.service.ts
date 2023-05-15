@@ -94,4 +94,32 @@ export class UserService {
   public static getUserAsObservable() {
     return UserService.userSubject.asObservable();
   }
+
+  subscribeToSubreddot(subreddotId: string) {
+    this.initHeaders();
+    const body = {
+      userSubscribes: subreddotId,
+    }
+    return this.http.put('http://localhost:3000/users/subscribe/' + localStorage.getItem('userId'), body, {headers: this.headers});
+  }
+
+  unsubscribeToSubreddot(subreddotId: string) {
+    this.initHeaders();
+    const body = {
+      userSubscribes: subreddotId,
+    }
+    return this.http.put('http://localhost:3000/users/unsubscribe/' + localStorage.getItem('userId'), body, {headers: this.headers});
+  }
+
+  isSubscribedToSubreddot(subreddotId: string) {
+    this.initHeaders();
+    const body = {
+      userSubscribes: subreddotId,
+    }
+    return this.http.post('http://localhost:3000/users/issubscribed/' + localStorage.getItem('userId') , body, {headers: this.headers});
+  }
+
+  isLogged() {
+    return !!localStorage.getItem('token');
+  }
 }
