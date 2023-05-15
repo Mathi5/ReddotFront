@@ -31,14 +31,15 @@ export class PostServiceService {
     return this.http.get(`http://localhost:3000/posts/${id}`, {headers: this.headers});
   }
 
-  addPost(subReddotId: string, title: string, content: string, media: string, userId: string) {
+  addPost(subReddotId: string, title: string, content: string, media: string, file: any, userId: string) {
     this.initHeaders();
     const body = {
       title: title,
       content: content,
       postSub: subReddotId,
       postUser: userId,
-      media: media
+      media: media,
+      file: file
     }
 
     return this.http.post('http://localhost:3000/posts/', body, {headers: this.headers});

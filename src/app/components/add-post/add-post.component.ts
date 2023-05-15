@@ -4,6 +4,7 @@ import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Post } from 'src/models/post.model';
 import { PostServiceService } from 'src/services/post-service.service';
+import { JSON_parse } from 'uint8array-json-parser';
 
 @Component({
   selector: 'app-add-post',
@@ -11,7 +12,7 @@ import { PostServiceService } from 'src/services/post-service.service';
   styleUrls: ['./add-post.component.css']
 })
 export class AddPostComponent {
-  newPost: Post = { _id:'', title:'', media:'', content:'', postUser:'', postSub:'' };
+  newPost: Post = { _id:'', title:'', media:'', content:'', file: new Uint8Array, postUser:'', postSub:'' };
 
   addPostForm: FormGroup;
 
@@ -58,7 +59,7 @@ export class AddPostComponent {
         this.newPost.media = 'text';
         this.newPost.content = content;
 
-        this.postService.addPost(this.newPost.postSub, this.newPost.title, this.newPost.content, this.newPost.media, loggedUser ).subscribe(res => {
+        this.postService.addPost(this.newPost.postSub, this.newPost.title, this.newPost.content, this.newPost.media, this.newPost.file, loggedUser ).subscribe(res => {
           console.log(res);
         });
 
@@ -82,11 +83,19 @@ export class AddPostComponent {
             console.log('imageUint8Array : ' + imageUint8Array);
       
             // Appeler la fonction pour enregistrer l'image dans Firebase Cloud Storage
-            //saveImageToFirebase(imageUint8Array);
-            this.newPost.content = imageUint8Array.toString();
-            console.log('image après toString : ' + this.newPost.content);
+            
+            //this.newPost.file = imageUint8Array;
+            // const imageBuffer = JSON.stringify(imageUint8Array);
+            // console.log('imageBuffer : ' + imageBuffer);
+            // const parsedImage = JSON.parse(imageBuffer);
+            // console.log('parsedImage : ' + parsedImage);
 
-            this.postService.addPost(this.newPost.postSub, this.newPost.title, this.newPost.content, this.newPost.media, loggedUser ).subscribe(res => {
+            const parsedImage = JSON_parse(imageUint8Array);
+            console.log('parsedImage : ' + parsedImage);
+            this.newPost.file = parsedImage;
+
+
+            this.postService.addPost(this.newPost.postSub, this.newPost.title, this.newPost.content, this.newPost.media, this.newPost.file, loggedUser ).subscribe(res => {
               console.log(res);
             });
           };

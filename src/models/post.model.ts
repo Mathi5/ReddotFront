@@ -3,6 +3,8 @@ export interface Post {
     title:string;
     content:string;
     media:string;
+    //file: Uint8Array;
+    file: any;
     postUser:string;
     postSub:string;
 }
