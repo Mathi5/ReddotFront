@@ -70,7 +70,7 @@ export class PostDetailComponent {
       if (this.commentForm.valid) {
         const text = this.commentForm.get('text')!.value;
         var userId = this.userService.getUserId();
-        const newComment: Comment = { _id: '', content: text, commentUser: userId, commentPost: this.id, parent: this.respondTo };
+        const newComment: Comment = { _id: '', content: text, commentUser: userId, commentPost: this.id, parent: this.respondTo, commentUpvotes:[], commentDownvotes:[] };
         console.log('newComment');
         console.log(newComment);
         this.commentService.sendComment(newComment).subscribe(res => {
@@ -89,7 +89,9 @@ export class PostDetailComponent {
       _id: comment._id,
       content: comment.content,
       commentUser: comment.commentUser,
-      commentPost: comment.commentPost
+      commentPost: comment.commentPost,
+      commentUpvotes: comment.commentUpvotes,
+      commentDownvotes: comment.commentDownvotes
     };
 
     const children = comments.filter(c => c.parent === comment._id);

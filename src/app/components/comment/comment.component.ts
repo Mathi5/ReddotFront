@@ -20,6 +20,7 @@ export class CommentComponent {
   isUpvoted = false;
   isDownvoted = false;
   @Input() comment?:CommentWithChildren;
+  upvoteCount = 0;
   @Input() index = 0;
   username:string = '';
 
@@ -29,6 +30,9 @@ export class CommentComponent {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
+
+    this.upvoteCount = (this.comment?.commentUpvotes.length as number) - (this.comment?.commentDownvotes.length as number);
+
     this.userService.getUserById(this.comment?.commentUser as string).subscribe(res => {
       const user = res as User;
       this.username = user.pseudo as string;
@@ -36,6 +40,7 @@ export class CommentComponent {
 
     this.userService.getUser().subscribe(res => {
       const actualUser = res as User;
+
 
       if(actualUser) {
         if(actualUser.userCommentUpvotes.indexOf(this.comment?._id ?? '') != -1){
@@ -56,17 +61,20 @@ export class CommentComponent {
   async upvote() {
     if(this.isUpvoted) {
       this.isUpvoted = false;
+      this.upvoteCount--;
       if(this.comment) {
         this.upvoteService.removeUpvoteComment(this.comment._id).subscribe();
       }
     } else {
 
       if(this.comment && this.isDownvoted) {
+        this.upvoteCount++;
         this.upvoteService.removeDownvoteComment(this.comment._id).subscribe();
       }
 
       this.isUpvoted = true;
       this.isDownvoted = false;
+      this.upvoteCount++;
 
       if(this.comment) {
         await new Promise(resolve => setTimeout(resolve, 1000)); // 3 sec
@@ -78,16 +86,19 @@ export class CommentComponent {
   async downvote() {
     if(this.isDownvoted) {
       this.isDownvoted = false;
+      this.upvoteCount++;
 
       if(this.comment) {
         this.upvoteService.removeDownvoteComment(this.comment._id).subscribe((res) => {});
       }
     } else {
       if(this.comment && this.isUpvoted) {
+        this.upvoteCount--;
         this.upvoteService.removeUpvoteComment(this.comment._id).subscribe();
       }
       this.isUpvoted = false;
       this.isDownvoted = true;
+      this.upvoteCount--;
 
       if(this.comment) {
         await new Promise(resolve => setTimeout(resolve, 1000));
