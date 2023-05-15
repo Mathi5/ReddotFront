@@ -6,6 +6,7 @@
     <h1 *ngIf="!posts">No posts found</h1>
   </div>
   <div class="data-sr-container">
+    <img src="{{ subreddot?.icon }}" alt="Sub icon" id="subIcon">
     <h2 *ngIf="subreddot">r/{{ subreddot.name }}</h2>
     <h4 *ngIf="subreddot">{{ subreddot.description }}</h4>
     <button>

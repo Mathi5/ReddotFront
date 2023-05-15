@@ -27,6 +27,12 @@ export class SubReddotService {
     return this.http.get('http://localhost:3000/subreddots/' + id, {headers: this.headers});
   }
 
+  getFeaturedSubReddots() {
+    this.initHeaders();
+    console.log('coucou');
+    return this.http.get('http://localhost:3000/subreddots/featured', {headers: this.headers});
+  }
+
   addSubReddot(name: string, description: string, icon: string) {
     this.initHeaders();
 
