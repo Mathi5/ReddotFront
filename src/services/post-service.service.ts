@@ -26,6 +26,16 @@ export class PostServiceService {
     return this.http.get(`http://localhost:3000/posts/`, {headers: this.headers});
   }
 
+  getPostsByDate() {
+    this.initHeaders();
+    return this.http.get(`http://localhost:3000/posts/date`, {headers: this.headers});
+  }
+
+  getPostsByPopularity() {
+    this.initHeaders();
+    return this.http.get(`http://localhost:3000/posts/popularity`, {headers: this.headers});
+  }
+
   getPostById(id: string) {
     this.initHeaders();
     return this.http.get(`http://localhost:3000/posts/${id}`, {headers: this.headers});

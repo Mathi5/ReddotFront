@@ -12,6 +12,7 @@ import { SubReddotService } from 'src/services/sub-reddot.service';
 export class HomeComponent {
   posts?:Array<Post>;
   featuredSubs?:Array<Subreddot>;
+  sort: string = 'date';
 
   constructor(
     private postService:PostServiceService,
@@ -21,12 +22,32 @@ export class HomeComponent {
   }
 
   async ngOnInit(): Promise<void> {
-    this.postService.getPosts().subscribe(res => {
+    // this.postService.getPosts().subscribe(res => {
+    //   this.posts = res as Array<Post>;
+    // });
+    this.postService.getPostsByDate().subscribe(res => {
       this.posts = res as Array<Post>;
     });
     this.subReddotService.getFeaturedSubReddots().subscribe(res => {
       this.featuredSubs = res as Array<Subreddot>;
       console.log(this.featuredSubs);
     });
+  }
+
+  async switchSort() {
+    console.log('switch');
+    if (this.sort == 'date') {
+      this.postService.getPostsByPopularity().subscribe(res => {
+        this.posts = res as Array<Post>;
+        document.getElementById('sort')!.innerHTML = 'Sort by popularity';
+        this.sort = 'popularity';
+      });
+    } else {
+      this.postService.getPostsByDate().subscribe(res => {
+        this.posts = res as Array<Post>;
+        document.getElementById('sort')!.innerHTML = 'Sort by date';
+        this.sort = 'date';
+      });
+    }
   }
 }
