@@ -5,4 +5,8 @@ export interface User {
     password:String;
     userPosts:String[];
     userSubscribes:String[];
+    userUpvotes:String[];
+    userDownvotes:String[];
+    userCommentUpvotes:String[];
+    userCommentDownvotes:String[];
 }
