@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from 'src/models/post.model';
 import { PostServiceService } from 'src/services/post-service.service';
 import { JSON_parse } from 'uint8array-json-parser';
@@ -32,7 +32,8 @@ export class AddPostComponent {
     private fb: FormBuilder,
     private http: HttpClient,
     private postService: PostServiceService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router:Router
     ) {
       this.addPostForm = this.fb.group({
         title: ['', [Validators.required]],
@@ -108,6 +109,8 @@ export class AddPostComponent {
 
             this.postService.addPost(this.newPost.postSub, this.newPost.title, this.newPost.content, this.newPost.media, this.newPost.file, loggedUser ).subscribe(res => {
               console.log(res);
+              //redirect to subreddot page
+              this.router.navigate(['/subreddot/' + this.newPost.postSub]);
             });
           };
 

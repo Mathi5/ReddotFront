@@ -13,7 +13,7 @@
     <div class="title" (click)="goToPost()">
       <h5 (click)="goToSub()">{{'r/' + subReddotName}}</h5>
       <h3>{{post?.title}}</h3>
-      <img [src]="post?.content" *ngIf="post?.media == 'picture'">
+      <img [src]="post?.content" *ngIf="post?.media == 'picture'" class="post-image" style="width: 100%">
       <p *ngIf="post?.media == 'text'">{{post?.content}}</p>
       <p>{{ 'Author: ' + pseudoAuthor }}</p>
     </div>
