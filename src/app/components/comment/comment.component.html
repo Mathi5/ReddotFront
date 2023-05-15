@@ -22,7 +22,7 @@
     <fa-icon *ngIf="isUpvoted" [icon]="faArrowUp" size="lg" class="red-icon" (click)="upvote()"></fa-icon>
     <fa-icon *ngIf="!isUpvoted" [icon]="faArrowUp" size="lg" class="grey-icon hover-red" (click)="upvote()"></fa-icon>
     <div class="vote">
-        Vote
+        {{upvoteCount}} Vote
     </div>
     <fa-icon *ngIf="isDownvoted" [icon]="faArrowDown" size="lg" class="blue-icon" (click)="downvote()"></fa-icon>
     <fa-icon *ngIf="!isDownvoted" [icon]="faArrowDown" size="lg" class="grey-icon hover-blue" (click)="downvote()"></fa-icon>
