@@ -1,18 +1,21 @@
 <div class="post-container">
   <div class="row">
     <div class="vote">
-      
+
       <fa-icon [icon]="faArrowUp" *ngIf="isUpvoted" class="red-icon" size="lg" (click)="upvote()"></fa-icon>
       <fa-icon [icon]="faArrowUp" *ngIf="!isUpvoted" class="grey-icon hover-red" size="lg" (click)="upvote()"></fa-icon>
       <p>vote</p>
+      <p>{{getUpvotesNumber()}}</p>
       <fa-icon [icon]="faArrowDown" *ngIf="isDownvoted" class="blue-icon" size="lg" (click)="downvote()"></fa-icon>
       <fa-icon [icon]="faArrowDown" *ngIf="!isDownvoted" class="grey-icon hover-blue" size="lg" (click)="downvote()"></fa-icon>
 
     </div>
     <div class="title" (click)="goToPost()">
+      <h5 (click)="goToSub()">{{'r/' + subReddotName}}</h5>
       <h3>{{post?.title}}</h3>
       <img [src]="post?.content" *ngIf="post?.media == 'picture'">
       <p *ngIf="post?.media == 'text'">{{post?.content}}</p>
+      <p>{{ 'Author: ' + pseudoAuthor }}</p>
     </div>
   </div>
 </div>

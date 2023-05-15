@@ -5,6 +5,8 @@ import { Post } from 'src/models/post.model';
 import { User } from 'src/models/user.model';
 import { UpvoteService } from 'src/services/upvote.service';
 import { UserService } from 'src/services/user.service';
+import {PostServiceService} from "../../../services/post-service.service";
+import {SubReddotService} from "../../../services/sub-reddot.service";
 
 @Component({
   selector: 'app-post',
@@ -17,10 +19,19 @@ export class PostComponent {
   isUpvoted = false;
   isDownvoted = false;
   https: any;
+  upvotesNumber: number = 0;
+  pseudoAuthor: string = "";
+  subReddotName: string = "";
 
   @Input() post?:Post;
 
-  constructor(private router:Router, private userService:UserService, private upvoteService:UpvoteService) {
+  constructor(
+    private router:Router,
+    private userService:UserService,
+    private upvoteService:UpvoteService,
+    private postService:PostServiceService,
+    private subReddotService:SubReddotService,
+  ) {
   }
 
   ngOnInit(): void {
@@ -32,7 +43,17 @@ export class PostComponent {
       if(user.userDownvotes.indexOf(this.post?._id ?? '') != -1){
         this.isDownvoted = true;
       }
-    })
+    });
+
+    this.userService.getUserById(this.post?.postUser ?? '').subscribe(res => {
+      const user = res as User;
+      this.pseudoAuthor = user.pseudo as string;
+    });
+
+    this.subReddotService.getSubReddot(this.post?.postSub ?? '').subscribe(res => {
+      const subReddot = res as any;
+      this.subReddotName = subReddot.name as string;
+    });
   }
 
   async upvote() {
@@ -82,5 +103,27 @@ export class PostComponent {
 
   goToPost() {
     this.router.navigate(['/posts', this.post?._id])
+  }
+
+  goToSub() {
+    this.router.navigate(['/subreddot', this.post?.postSub])
+  }
+
+  getUpvotesNumber() : string {
+    if(this.post) {
+      let numbUV = (this.post.postUpvotes.length - this.post.postDownvotes.length);
+      let k = "";
+      if(numbUV > 1000) {
+        numbUV = numbUV / 1000;
+        k = "k";
+      } else if(numbUV > 1000000) {
+        numbUV = numbUV / 1000000;
+        k = "M";
+      }
+
+      return numbUV.toFixed(0).toString() + k;
+
+    }
+    return "0";
   }
 }
