@@ -19,18 +19,18 @@ export class SubReddotService {
   }
   getSubReddots() {
     this.initHeaders();
-    return this.http.get('http://localhost:3000/subreddots/', {headers: this.headers});
+    return this.http.get('https://reddot-back.onrender.com/subreddots/', {headers: this.headers});
   }
 
   getSubReddot(id: string) {
     this.initHeaders();
-    return this.http.get('http://localhost:3000/subreddots/' + id, {headers: this.headers});
+    return this.http.get('https://reddot-back.onrender.com/subreddots/' + id, {headers: this.headers});
   }
 
   getFeaturedSubReddots() {
     this.initHeaders();
     console.log('coucou');
-    return this.http.get('http://localhost:3000/subreddots/featured', {headers: this.headers});
+    return this.http.get('https://reddot-back.onrender.com/subreddots/featured', {headers: this.headers});
   }
 
   addSubReddot(name: string, description: string, icon: string) {
@@ -42,6 +42,6 @@ export class SubReddotService {
       icon: icon,
     }
 
-    return this.http.post('http://localhost:3000/subreddots/', body, {headers: this.headers});
+    return this.http.post('https://reddot-back.onrender.com/subreddots/', body, {headers: this.headers});
   }
 }

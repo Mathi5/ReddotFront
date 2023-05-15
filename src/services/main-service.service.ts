@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class MainServiceService {
 
-  url = 'http://localhost:3000/';
+  url = 'https://reddot-back.onrender.com/';
 
   constructor() { }
 }

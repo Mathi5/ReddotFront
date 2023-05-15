@@ -11,10 +11,10 @@ export class CommentServiceService {
   ) { }
 
   getCommentsFromPost(postId: String) {
-    return this.http.get(`http://localhost:3000/comments/post/${postId}`);
+    return this.http.get(`https://reddot-back.onrender.com/comments/post/${postId}`);
   }
 
   sendComment(comment:Comment) { 
-    return this.http.post(`http://localhost:3000/comments/`, comment);
+    return this.http.post(`https://reddot-back.onrender.com/comments/`, comment);
   }
 }

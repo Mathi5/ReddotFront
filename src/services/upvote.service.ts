@@ -26,7 +26,7 @@ export class UpvoteService {
       userUpvotes: commentId
     };
     console.log(body);
-    return this.http.post('http://localhost:3000/users/comments/upvotes/' + userId, body, { headers: this.headers });
+    return this.http.post('https://reddot-back.onrender.com/users/comments/upvotes/' + userId, body, { headers: this.headers });
   }
 
   removeUpvoteComment(commentId: String) {
@@ -35,7 +35,7 @@ export class UpvoteService {
     const body = {
       userUpvotes: commentId
     };
-    return this.http.post('http://localhost:3000/users/comments/upvotes/remove/' + userId, body, { headers: this.headers });
+    return this.http.post('https://reddot-back.onrender.com/users/comments/upvotes/remove/' + userId, body, { headers: this.headers });
   }
 
   downVoteComment(commentId: String) {
@@ -44,7 +44,7 @@ export class UpvoteService {
     const body = {
       userDownvotes: commentId
     };
-    return this.http.post('http://localhost:3000/users/comments/downvotes/' + userId, body, { headers: this.headers });
+    return this.http.post('https://reddot-back.onrender.com/users/comments/downvotes/' + userId, body, { headers: this.headers });
   }
 
   removeDownvoteComment(commentId: String) {
@@ -53,7 +53,7 @@ export class UpvoteService {
     const body = {
       userDownvotes: commentId
     };
-    return this.http.post('http://localhost:3000/users/comments/downvotes/remove/' + userId, body, { headers: this.headers });
+    return this.http.post('https://reddot-back.onrender.com/users/comments/downvotes/remove/' + userId, body, { headers: this.headers });
   }
 
   upvotePost(postId: String) {
@@ -63,7 +63,7 @@ export class UpvoteService {
       userUpvotes:postId
     };
 
-    return this.http.post('http://localhost:3000/users/upvotes/' + userId, body, { headers: this.headers });
+    return this.http.post('https://reddot-back.onrender.com/users/upvotes/' + userId, body, { headers: this.headers });
   }
 
   removeUpvotePost(postId: String) {
@@ -72,7 +72,7 @@ export class UpvoteService {
     const body = {
       'userUpvotes': `${postId}`
     };
-    return this.http.post('http://localhost:3000/users/upvotes/remove/' + userId, body, { headers: this.headers });
+    return this.http.post('https://reddot-back.onrender.com/users/upvotes/remove/' + userId, body, { headers: this.headers });
   }
 
   downvotePost(postId: String) {
@@ -81,7 +81,7 @@ export class UpvoteService {
     const body = {
       userDownvotes: postId
     };
-    return this.http.post('http://localhost:3000/users/downvotes/' + userId, body, { headers: this.headers });
+    return this.http.post('https://reddot-back.onrender.com/users/downvotes/' + userId, body, { headers: this.headers });
   }
 
   removeDownvotePost(postId: String) {
@@ -90,6 +90,6 @@ export class UpvoteService {
     const body = {
       userDownvotes: postId
     };
-    return this.http.post('http://localhost:3000/users/downvotes/remove/' + userId, body, { headers: this.headers });
+    return this.http.post('https://reddot-back.onrender.com/users/downvotes/remove/' + userId, body, { headers: this.headers });
   }
 }

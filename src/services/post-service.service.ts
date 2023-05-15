@@ -23,12 +23,12 @@ export class PostServiceService {
 
   getPosts() {
     this.initHeaders();
-    return this.http.get(`http://localhost:3000/posts/`, {headers: this.headers});
+    return this.http.get(`https://reddot-back.onrender.com/posts/`, {headers: this.headers});
   }
 
   getPostById(id: string) {
     this.initHeaders();
-    return this.http.get(`http://localhost:3000/posts/${id}`, {headers: this.headers});
+    return this.http.get(`https://reddot-back.onrender.com/posts/${id}`, {headers: this.headers});
   }
 
   addPost(subReddotId: string, title: string, content: string, media: string, file: any, userId: string) {
@@ -42,11 +42,11 @@ export class PostServiceService {
       file: file
     }
 
-    return this.http.post('http://localhost:3000/posts/', body, {headers: this.headers});
+    return this.http.post('https://reddot-back.onrender.com/posts/', body, {headers: this.headers});
   }
 
   getPostBySubId(id: string) {
     this.initHeaders();
-    return this.http.get(`http://localhost:3000/posts/sub/${id}`, {headers: this.headers});
+    return this.http.get(`https://reddot-back.onrender.com/posts/sub/${id}`, {headers: this.headers});
   }
 }

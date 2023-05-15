@@ -25,12 +25,12 @@ export class UserService {
   getUser() {
     this.initHeaders();
     const userId = localStorage.getItem('userId');
-    return this.http.get('http://localhost:3000/users/' + userId, {headers: this.headers});
+    return this.http.get('https://reddot-back.onrender.com/users/' + userId, {headers: this.headers});
   }
 
   getUserById(userId:string) {
     this.initHeaders();
-    return this.http.get('http://localhost:3000/users/' + userId, {headers: this.headers});
+    return this.http.get('https://reddot-back.onrender.com/users/' + userId, {headers: this.headers});
   }
 
   getUserId():String {
@@ -42,7 +42,7 @@ export class UserService {
   updateUser(updatedUser: User) {
     this.initHeaders();
     const userId = localStorage.getItem('userId');
-    return this.http.put(`http://localhost:3000/users/${userId}`, updatedUser, {headers: this.headers});
+    return this.http.put(`https://reddot-back.onrender.com/users/${userId}`, updatedUser, {headers: this.headers});
   }
 
   checkUserPseudo(pseudo: string) {
@@ -50,7 +50,7 @@ export class UserService {
     const body = {
       pseudo: pseudo
     }
-    return this.http.post('http://localhost:3000/users/checkpseudo', body, {headers: this.headers});
+    return this.http.post('https://reddot-back.onrender.com/users/checkpseudo', body, {headers: this.headers});
   }
 
   checkUserMail(mail: string) {
@@ -58,7 +58,7 @@ export class UserService {
     const body = {
       mail: mail
     }
-    return this.http.post('http://localhost:3000/users/checkmail', body, {headers: this.headers});
+    return this.http.post('https://reddot-back.onrender.com/users/checkmail', body, {headers: this.headers});
   }
 
   checkUserData(mail: string, pseudo: string) {
@@ -82,7 +82,7 @@ export class UserService {
       pseudo: pseudo,
       password: password
     }
-    return this.http.post('http://localhost:3000/users/', body, {headers: this.headers});
+    return this.http.post('https://reddot-back.onrender.com/users/', body, {headers: this.headers});
   }
 
   initUser() {
@@ -100,7 +100,7 @@ export class UserService {
     const body = {
       userSubscribes: subreddotId,
     }
-    return this.http.put('http://localhost:3000/users/subscribe/' + localStorage.getItem('userId'), body, {headers: this.headers});
+    return this.http.put('https://reddot-back.onrender.com/users/subscribe/' + localStorage.getItem('userId'), body, {headers: this.headers});
   }
 
   unsubscribeToSubreddot(subreddotId: string) {
@@ -108,7 +108,7 @@ export class UserService {
     const body = {
       userSubscribes: subreddotId,
     }
-    return this.http.put('http://localhost:3000/users/unsubscribe/' + localStorage.getItem('userId'), body, {headers: this.headers});
+    return this.http.put('https://reddot-back.onrender.com/users/unsubscribe/' + localStorage.getItem('userId'), body, {headers: this.headers});
   }
 
   isSubscribedToSubreddot(subreddotId: string) {
@@ -116,7 +116,7 @@ export class UserService {
     const body = {
       userSubscribes: subreddotId,
     }
-    return this.http.post('http://localhost:3000/users/issubscribed/' + localStorage.getItem('userId') , body, {headers: this.headers});
+    return this.http.post('https://reddot-back.onrender.com/users/issubscribed/' + localStorage.getItem('userId') , body, {headers: this.headers});
   }
 
   isLogged() {
