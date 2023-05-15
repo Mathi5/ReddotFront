@@ -9,10 +9,13 @@
     <img src="{{ subreddot?.icon }}" alt="Sub icon" id="subIcon">
     <h2 *ngIf="subreddot">r/{{ subreddot.name }}</h2>
     <h4 *ngIf="subreddot">{{ subreddot.description }}</h4>
-    <button>
+    <h4 *ngIf="subreddot"> Subscribers : {{ subreddot.subscribers.length }}</h4>
+    <button *ngIf="subreddot && isSubscribed && isLogged" (click)="subscribeToSubreddot()">Unsubscribe</button>
+    <button *ngIf="subreddot && !isSubscribed && isLogged" (click)="subscribeToSubreddot()">Subscribe</button>
+    <button *ngIf="subreddot && isLogged">
       <!--<fa-icon [icon]="faPlus" (click)="addPost()" size="lg">Subreddot</fa-icon>-->
-      <fa-icon [icon]="faPlus" routerLink="/addPost/{{ subreddotId }}" size="lg">Subreddot</fa-icon>
-
+      <fa-icon [icon]="faPlus" routerLink="/addPost/{{ subreddotId }}" size="lg"></fa-icon>
+      Add Post
     </button>
   </div>
 </div>

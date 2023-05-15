@@ -2,7 +2,7 @@
   box-sizing: border-box;
   text-decoration: none;
   list-style: none;
-
+  font-size: medium;
 }
 
 .container {
@@ -40,6 +40,9 @@
 .link {
   color: #fff;
   padding: 0.5rem;
+  text-align: center;
+  text-decoration: none;
+  margin: auto;
 }
 
 .link:hover {

@@ -44,6 +44,4 @@ export class SubReddotService {
 
     return this.http.post('http://localhost:3000/subreddots/', body, {headers: this.headers});
   }
-
-
 }
