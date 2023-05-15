@@ -36,7 +36,6 @@ export class PostComponent {
   }
 
   async upvote() {
-    console.log("UPVOTE");
     if(this.isUpvoted) {
       this.isUpvoted = false;
       if(this.post) {
@@ -59,7 +58,6 @@ export class PostComponent {
   }
 
   async downvote() {
-    console.log("DOWNVOTE");
     if(this.isDownvoted) {
       this.isDownvoted = false;
 

@@ -4,6 +4,7 @@ import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { CommentWithChildren } from 'src/models/comment-with-children.model';
 import { User } from 'src/models/user.model';
 import { CommentEmitterServiceService } from 'src/services/comment-emitter-service.service';
+import { UpvoteService } from 'src/services/upvote.service';
 import { UserService } from 'src/services/user.service';
 
 @Component({
@@ -22,7 +23,7 @@ export class CommentComponent {
   @Input() index = 0;
   username:string = '';
 
-  constructor(private userService:UserService) {
+  constructor(private userService:UserService, private upvoteService:UpvoteService) {
   }
 
   ngOnInit(): void {
@@ -32,6 +33,19 @@ export class CommentComponent {
       const user = res as User;
       this.username = user.pseudo as string;
     });
+
+    this.userService.getUser().subscribe(res => {
+      const actualUser = res as User;
+
+      if(actualUser) {
+        if(actualUser.userCommentUpvotes.indexOf(this.comment?._id ?? '') != -1){
+          this.isUpvoted = true;
+        }
+        if(actualUser.userCommentDownvotes.indexOf(this.comment?._id ?? '') != -1){
+          this.isDownvoted = true;
+        }
+      }
+    })
   }
 
   respondToComment() {
@@ -39,13 +53,46 @@ export class CommentComponent {
     CommentEmitterServiceService.setCommentId(commentId);
   }
 
-  upvote() {
-    this.isUpvoted = !this.isUpvoted;
-    this.isDownvoted = false;
+  async upvote() {
+    if(this.isUpvoted) {
+      this.isUpvoted = false;
+      if(this.comment) {
+        this.upvoteService.removeUpvoteComment(this.comment._id).subscribe();
+      }
+    } else {
+
+      if(this.comment && this.isDownvoted) {
+        this.upvoteService.removeDownvoteComment(this.comment._id).subscribe();
+      }
+
+      this.isUpvoted = true;
+      this.isDownvoted = false;
+
+      if(this.comment) {
+        await new Promise(resolve => setTimeout(resolve, 1000)); // 3 sec
+        this.upvoteService.upvoteComment(this.comment._id).subscribe();
+      }
+    }
   }
 
-  downvote() {
-    this.isUpvoted = false;
-    this.isDownvoted = !this.isDownvoted;
+  async downvote() {
+    if(this.isDownvoted) {
+      this.isDownvoted = false;
+
+      if(this.comment) {
+        this.upvoteService.removeDownvoteComment(this.comment._id).subscribe((res) => {});
+      }
+    } else {
+      if(this.comment && this.isUpvoted) {
+        this.upvoteService.removeUpvoteComment(this.comment._id).subscribe();
+      }
+      this.isUpvoted = false;
+      this.isDownvoted = true;
+
+      if(this.comment) {
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        this.upvoteService.downVoteComment(this.comment._id).subscribe();
+      }
+    }
   }
 }

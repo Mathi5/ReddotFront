@@ -19,11 +19,13 @@ export class UpvoteService {
   }
 
   upvoteComment(commentId: String) {
+    console.log("Upvoting comment")
     this.initHeaders();
     const userId = localStorage.getItem('userId');
     const body = {
       userUpvotes: commentId
     };
+    console.log(body);
     return this.http.post('http://localhost:3000/users/comments/upvotes/' + userId, body, { headers: this.headers });
   }
 
@@ -42,7 +44,7 @@ export class UpvoteService {
     const body = {
       userDownvotes: commentId
     };
-    return this.http.post('http://localhost:3000/users/comments/upvotes/' + userId, body, { headers: this.headers });
+    return this.http.post('http://localhost:3000/users/comments/downvotes/' + userId, body, { headers: this.headers });
   }
 
   removeDownvoteComment(commentId: String) {
