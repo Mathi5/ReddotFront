@@ -28,12 +28,12 @@ export class PostServiceService {
 
   getPostsByDate() {
     this.initHeaders();
-    return this.http.get(`http://localhost:3000/posts/date`, {headers: this.headers});
+    return this.http.get(`https://reddot-back.onrender.com/posts/date`, {headers: this.headers});
   }
 
   getPostsByPopularity() {
     this.initHeaders();
-    return this.http.get(`http://localhost:3000/posts/popularity`, {headers: this.headers});
+    return this.http.get(`https://reddot-back.onrender.com/posts/popularity`, {headers: this.headers});
   }
 
   getPostById(id: string) {
