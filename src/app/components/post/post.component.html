@@ -5,7 +5,7 @@
       <fa-icon [icon]="faArrowUp" *ngIf="isUpvoted" class="red-icon" size="lg" (click)="upvote()"></fa-icon>
       <fa-icon [icon]="faArrowUp" *ngIf="!isUpvoted" class="grey-icon hover-red" size="lg" (click)="upvote()"></fa-icon>
       <p>vote</p>
-      <p>{{getUpvotesNumber()}}</p>
+      <p>{{upvoteCount}}</p>
       <fa-icon [icon]="faArrowDown" *ngIf="isDownvoted" class="blue-icon" size="lg" (click)="downvote()"></fa-icon>
       <fa-icon [icon]="faArrowDown" *ngIf="!isDownvoted" class="grey-icon hover-blue" size="lg" (click)="downvote()"></fa-icon>
 

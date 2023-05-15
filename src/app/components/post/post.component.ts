@@ -22,6 +22,7 @@ export class PostComponent {
   upvotesNumber: number = 0;
   pseudoAuthor: string = "";
   subReddotName: string = "";
+  upvoteCount = 0;
 
   @Input() post?:Post;
 
@@ -43,7 +44,10 @@ export class PostComponent {
       if(user.userDownvotes.indexOf(this.post?._id ?? '') != -1){
         this.isDownvoted = true;
       }
+
     });
+
+    this.upvoteCount = (this.post?.postUpvotes.length as number) - (this.post?.postDownvotes.length as number);
 
     this.userService.getUserById(this.post?.postUser ?? '').subscribe(res => {
       const user = res as User;
@@ -64,17 +68,20 @@ export class PostComponent {
     console.log("UPVOTE");
     if(this.isUpvoted) {
       this.isUpvoted = false;
+      this.upvoteCount--;
       if(this.post) {
         this.upvoteService.removeUpvotePost(this.post._id).subscribe();
       }
     } else {
 
       if(this.post && this.isDownvoted) {
+        this.upvoteCount++;
         this.upvoteService.removeDownvotePost(this.post._id).subscribe();
       }
 
       this.isUpvoted = true;
       this.isDownvoted = false;
+      this.upvoteCount++;
 
       if(this.post) {
         await new Promise(resolve => setTimeout(resolve, 1000)); // 3 sec
@@ -90,6 +97,7 @@ export class PostComponent {
     }
     console.log("DOWNVOTE");
     if(this.isDownvoted) {
+      this.upvoteCount++;
       this.isDownvoted = false;
 
       if(this.post) {
@@ -97,10 +105,12 @@ export class PostComponent {
       }
     } else {
       if(this.post && this.isUpvoted) {
+        this.upvoteCount--;
         this.upvoteService.removeUpvotePost(this.post._id).subscribe();
       }
       this.isUpvoted = false;
       this.isDownvoted = true;
+      this.upvoteCount--;
 
       if(this.post) {
         await new Promise(resolve => setTimeout(resolve, 1000));
