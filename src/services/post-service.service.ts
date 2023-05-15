@@ -41,6 +41,16 @@ export class PostServiceService {
     return this.http.get(`http://localhost:3000/posts/${id}`, {headers: this.headers});
   }
 
+  getSubPostsByDate(id: string) {
+    this.initHeaders();
+    return this.http.get(`http://localhost:3000/posts/date/${id}`, {headers: this.headers});
+  }
+
+  getSubPostsByPopularity(id: string) {
+    this.initHeaders();
+    return this.http.get(`http://localhost:3000/posts/popularity/${id}`, {headers: this.headers});
+  }
+
   addPost(subReddotId: string, title: string, content: string, media: string, file: any, userId: string) {
     this.initHeaders();
     const body = {

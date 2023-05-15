@@ -1,4 +1,5 @@
-
+<button (click)="switchSort()" id="sort" *ngIf="sort == 'date'">Sort by popularity</button>
+<button (click)="switchSort()" id="sort" *ngIf="sort == 'popularity'">Sort by date</button>
 <div class="subreddotContainer">
 
   <div class="post-container">

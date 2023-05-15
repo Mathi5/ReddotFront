@@ -22,6 +22,7 @@ export class SubreddotComponent implements OnInit {
     faPlus = faPlus;
     isSubscribed: boolean = false;
     isLogged: boolean = false;
+    sort: string = 'date';
 
     constructor(
       private route: ActivatedRoute,
@@ -35,7 +36,10 @@ export class SubreddotComponent implements OnInit {
 
     ngOnInit(): void {
       this.init();
-      this.postService.getPostBySubId(this.subreddotId).subscribe(res => {
+      // this.postService.getPostBySubId(this.subreddotId).subscribe(res => {
+      //   this.posts = res as Array<Post>;
+      // });
+      this.postService.getSubPostsByDate(this.subreddotId).subscribe(res => {
         this.posts = res as Array<Post>;
       });
       this.userService.getUser().subscribe(res => {
@@ -64,5 +68,20 @@ export class SubreddotComponent implements OnInit {
           this.init();
         });
       }
+  }
+
+  async switchSort() {
+    console.log('switch');
+    if (this.sort == 'date') {
+      this.postService.getSubPostsByPopularity(this.subreddotId).subscribe(res => {
+        this.posts = res as Array<Post>;
+        this.sort = 'popularity';
+      });
+    } else {
+      this.postService.getSubPostsByDate(this.subreddotId).subscribe(res => {
+        this.posts = res as Array<Post>;
+        this.sort = 'date';
+      });
+    }
   }
 }

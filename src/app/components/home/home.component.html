@@ -1,4 +1,5 @@
-<button (click)="switchSort()" id="sort">Sort by popularity</button>
+<button (click)="switchSort()" id="sort" *ngIf="sort == 'date'">Sort by popularity</button>
+<button (click)="switchSort()" id="sort" *ngIf="sort == 'popularity'">Sort by date</button>
 <div class="homeContainer">
   <div class="data-sr-container">
     <h2>Featured SubReddots</h2>
