@@ -5,17 +5,20 @@
       <fa-icon [icon]="faArrowUp" *ngIf="isUpvoted" class="red-icon" size="lg" (click)="upvote()"></fa-icon>
       <fa-icon [icon]="faArrowUp" *ngIf="!isUpvoted" class="grey-icon hover-red" size="lg" (click)="upvote()"></fa-icon>
       <p>vote</p>
-      <p>{{getUpvotesNumber()}}</p>
+      <p>{{upvoteCount}}</p>
       <fa-icon [icon]="faArrowDown" *ngIf="isDownvoted" class="blue-icon" size="lg" (click)="downvote()"></fa-icon>
       <fa-icon [icon]="faArrowDown" *ngIf="!isDownvoted" class="grey-icon hover-blue" size="lg" (click)="downvote()"></fa-icon>
 
     </div>
     <div class="title" (click)="goToPost()">
-      <h5 (click)="goToSub()">{{'r/' + subReddotName}}</h5>
-      <h3>{{post?.title}}</h3>
-      <img [src]="post?.content" *ngIf="post?.media == 'picture'" class="post-image" style="width: 100%">
-      <p *ngIf="post?.media == 'text'">{{post?.content}}</p>
-      <p>{{ 'Author: ' + pseudoAuthor }}</p>
+      <div class="info-post">
+        <h5 (click)="goToSub()">{{'r/' + subReddotName}}</h5>
+        <p id="spacer">|</p>
+        <p>{{ 'Author: ' + pseudoAuthor }}</p>
+      </div>
+      <h3 class="titleh">{{post?.title}}</h3>
+      <img [src]="post?.content" *ngIf="post?.media == 'picture'" class="post-image post-content" style="width: 100%">
+      <p class="post-content" *ngIf="post?.media == 'text'">{{post?.content}}</p>
     </div>
   </div>
 </div>

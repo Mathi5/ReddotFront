@@ -24,7 +24,7 @@
                       <ul *ngIf="focus" class="search-results">
                         <li class="results" *ngFor="let subreddot of searchResults">
                           <a routerLink="/subreddot/{{ subreddot._id }}" target="">
-                            {{ subreddot.name }}
+                            r/{{subreddot.name }}
                           </a>
                           <fa-icon class="faChevronRight" [icon]="faChevronRight"></fa-icon>
                         </li>
