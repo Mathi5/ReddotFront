@@ -39,13 +39,11 @@ export class HomeComponent {
     if (this.sort == 'date') {
       this.postService.getPostsByPopularity().subscribe(res => {
         this.posts = res as Array<Post>;
-        document.getElementById('sort')!.innerHTML = 'Sort by popularity';
         this.sort = 'popularity';
       });
     } else {
       this.postService.getPostsByDate().subscribe(res => {
         this.posts = res as Array<Post>;
-        document.getElementById('sort')!.innerHTML = 'Sort by date';
         this.sort = 'date';
       });
     }
