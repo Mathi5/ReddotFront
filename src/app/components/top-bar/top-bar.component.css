@@ -103,6 +103,7 @@ button {
   text-decoration: none;
   display: flex;
   flex-direction: row;
+  text-align: left;
 }
 
 .results a {
