@@ -11,7 +11,7 @@ import { UserService } from 'src/services/user.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent {
-  loggedUser: User = {id: '', mail: '', pseudo: '', password: '', userPosts: [], userSubscribes: []};
+  loggedUser: User = {id: '', mail: '', pseudo: '', password: '', userPosts: [], userSubscribes: [], userUpvotes:[], userDownvotes:[], userCommentUpvotes:[], userCommentDownvotes:[]};
   editMode = false;
   changePassword = false;
 
@@ -42,7 +42,7 @@ export class ProfileComponent {
 
     onSubmit() {
       if (this.profileForm.valid) {
-        var updatedUser: User = {id: '', mail: '', pseudo: '', password: '', userPosts: [], userSubscribes: []};
+        var updatedUser: User = {id: '', mail: '', pseudo: '', password: '', userPosts: [], userSubscribes: [], userUpvotes:[], userDownvotes:[], userCommentUpvotes:[], userCommentDownvotes:[]};
         const pseudo = this.profileForm.get('pseudo')!.value;
         const mail = this.profileForm.get('mail')!.value;
         updatedUser.id = this.loggedUser.id;
