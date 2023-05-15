@@ -75,5 +75,6 @@ app-post {
 }
 
 #subIcon {
-  width: 100%;
+  width: 50%;
+  border-radius: 15px;
 }
