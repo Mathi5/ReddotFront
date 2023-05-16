@@ -1,9 +1,8 @@
-import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { User } from 'src/models/user.model';
-import { AuthServiceService } from 'src/services/auth-service.service';
-import { UserService } from 'src/services/user.service';
+import {HttpClient} from '@angular/common/http';
+import {Component} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {User} from 'src/models/user.model';
+import {UserService} from 'src/services/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -54,8 +53,7 @@ export class ProfileComponent {
         const oldPassword = this.profileForm.get('oldPassword')!.value;
 
         if (this.changePassword && this.checkPassword(oldPassword)) {
-          const newPassword = this.profileForm.get('newPassword')!.value;
-          updatedUser.password = newPassword;
+          updatedUser.password = this.profileForm.get('newPassword')!.value;
         } else {
           updatedUser.password = this.loggedUser.password;
         }
