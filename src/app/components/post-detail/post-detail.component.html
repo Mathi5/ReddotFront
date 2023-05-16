@@ -23,6 +23,7 @@
       <label>
         Comment:
         <p *ngIf="respondTo != ''">Répondre à : {{respondTo}}</p>
+        <fa-icon [icon]="faXmark" *ngIf="respondTo != ''" (click)="unselectComment()"></fa-icon>
         <!--<input type="text" formControlName="text" /> -->
         <textarea
           type="text"

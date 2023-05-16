@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { Observable } from 'rxjs';
 import { CommentWithChildren } from 'src/models/comment-with-children.model';
 import { Comment } from 'src/models/comment.model';
@@ -22,6 +23,7 @@ export class PostDetailComponent {
   commentsInTree?: Array<CommentWithChildren>;
   isLoading = true;
   id = '';
+  faXmark = faXmark;
   commentForm: FormGroup;
   respondTo = '';
 
@@ -111,5 +113,9 @@ export class PostDetailComponent {
     const rootComments = comments.filter(c => !c.parent);
 
     return rootComments.map(c => this.convertCommentToCommentWithChildren(c, comments));
+  }
+
+  unselectComment() {
+    this.respondTo = '';
   }
 }
