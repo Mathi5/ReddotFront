@@ -37,7 +37,9 @@ export class PostDetailComponent {
     });
 
     CommentEmitterServiceService.getCommentIdAsObservable().subscribe(res => {
-      this.respondTo = res;
+      const commentId = res;
+      var comment = this.comments?.find(x => x._id == commentId);
+      this.respondTo = comment?.content as string;
     });
   }
 
