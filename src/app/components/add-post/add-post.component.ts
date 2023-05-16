@@ -21,7 +21,8 @@ export class AddPostComponent {
     postUser:'',
     postSub:'',
     postUpvotes: [''],
-    postDownvotes: ['']
+    postDownvotes: [''],
+    createdAt: undefined,
   };
 
   addPostForm: FormGroup;
@@ -66,11 +67,13 @@ export class AddPostComponent {
       //this.addPostForm.get('file')!.value == ''
 
       if (uploadedFiles == 0) {
+        console.log('test');
         this.newPost.media = 'text';
         this.newPost.content = content;
 
         this.postService.addPost(this.newPost.postSub, this.newPost.title, this.newPost.content, this.newPost.media, this.newPost.file, loggedUser ).subscribe(res => {
           console.log(res);
+          this.router.navigate(['/subreddot/' + this.newPost.postSub]);
         });
 
       } else {

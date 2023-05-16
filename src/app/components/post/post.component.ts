@@ -24,6 +24,8 @@ export class PostComponent {
   subReddotName: string = "";
   upvoteCount = 0;
 
+  date: String | undefined;
+
   @Input() post?:Post;
 
   constructor(
@@ -58,6 +60,8 @@ export class PostComponent {
       const subReddot = res as any;
       this.subReddotName = subReddot.name as string;
     });
+
+    this.date = new Date(this.post?.createdAt ?? '').toLocaleString();
   }
 
   async upvote() {
@@ -120,6 +124,8 @@ export class PostComponent {
   }
 
   goToPost() {
+    const postDate = new Date(this.post?.createdAt ?? '').toLocaleString();
+    console.log("creation date : " + postDate);
     this.router.navigate(['/posts', this.post?._id])
   }
 

@@ -9,4 +9,5 @@ export interface Post {
     postSub:string;
     postUpvotes: Array<string>;
     postDownvotes: Array<string>;
+    createdAt: Date | undefined;
 }
