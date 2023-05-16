@@ -17,7 +17,7 @@
     <img src="{{ subreddot?.icon }}" alt="Sub icon" id="subIcon">
     <h2 *ngIf="subreddot">r/{{ subreddot.name }}</h2>
     <h4 *ngIf="subreddot">{{ subreddot.description }}</h4>
-    <h4 *ngIf="subreddot"> Subscribers : {{ subreddot.subscribers.length }}</h4>
+    <h4 *ngIf="subreddot"> Subscribers : {{ this.subCount }}</h4>
     <button *ngIf="subreddot && isSubscribed && isLogged" (click)="subscribeToSubreddot()">Unsubscribe</button>
     <button *ngIf="subreddot && !isSubscribed && isLogged" (click)="subscribeToSubreddot()">Subscribe</button>
     <button *ngIf="subreddot && isLogged" routerLink="/addPost/{{ subreddotId }}">

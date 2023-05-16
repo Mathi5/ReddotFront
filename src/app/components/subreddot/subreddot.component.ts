@@ -23,6 +23,7 @@ export class SubreddotComponent implements OnInit {
     isSubscribed: boolean = false;
     isLogged: boolean = false;
     sort: string = 'date';
+    subCount: number = 0;
 
     constructor(
       private route: ActivatedRoute,
@@ -45,11 +46,13 @@ export class SubreddotComponent implements OnInit {
       this.userService.getUser().subscribe(res => {
         this.user = res as User;
       });
+      
     }
 
     init() {
       this.subReddotService.getSubReddot(this.subreddotId).subscribe(res => {
         this.subreddot = res as Subreddot;
+        this.subCount = this.subreddot?.subscribers.length as number;
       });
       this.userService.isSubscribedToSubreddot(this.subreddotId).subscribe(res => {
         this.isSubscribed = res as boolean;
@@ -59,11 +62,13 @@ export class SubreddotComponent implements OnInit {
   subscribeToSubreddot() {
       if (this.isSubscribed) {
         this.isSubscribed = false;
+        this.subCount--;
         this.userService.unsubscribeToSubreddot(this.subreddotId).subscribe(res => {
           this.init();
         });
       } else {
         this.isSubscribed = true;
+        this.subCount++;
         this.userService.subscribeToSubreddot(this.subreddotId).subscribe(res => {
           this.init();
         });
