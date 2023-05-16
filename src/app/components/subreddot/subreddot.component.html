@@ -1,5 +1,12 @@
-<button (click)="switchSort()" id="sort" *ngIf="sort == 'date'">Sort by popularity</button>
-<button (click)="switchSort()" id="sort" *ngIf="sort == 'popularity'">Sort by date</button>
+<div class="toggle">
+  <p>Sort by : Date</p>
+  <label class="switch">
+    <input type="checkbox" (click)="switchSort()">
+    <span class="slider round"></span>
+  </label>
+  <p>Popularity</p>
+</div>
+
 <div class="subreddotContainer">
 
   <div class="post-container">

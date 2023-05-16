@@ -1,10 +1,17 @@
-<button (click)="switchSort()" id="sort" *ngIf="sort == 'date'">Sort by popularity</button>
-<button (click)="switchSort()" id="sort" *ngIf="sort == 'popularity'">Sort by date</button>
+<div class="toggle">
+  <p>Sort by : Date</p>
+  <label class="switch">
+    <input type="checkbox" (click)="switchSort()">
+    <span class="slider round"></span>
+  </label>
+  <p>Popularity</p>
+</div>
+
 <div class="homeContainer">
   <div class="data-sr-container">
     <h2>Featured SubReddots</h2>
     <div class="subs">
-      <div *ngFor="let sub of featuredSubs">
+      <div *ngFor="let sub of featuredSubs" routerLink="/subreddot/{{sub._id}}" class="featured-sub">
         <img src="{{ sub?.icon }}" alt="Sub icon" class="subIcon">
         <h4>r/{{ sub?.name }}</h4>
       </div>
