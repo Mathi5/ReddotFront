@@ -3,6 +3,7 @@ import { Post } from 'src/models/post.model';
 import { Subreddot } from 'src/models/subreddot.model';
 import { PostServiceService } from 'src/services/post-service.service';
 import { SubReddotService } from 'src/services/sub-reddot.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -17,6 +18,7 @@ export class HomeComponent {
   constructor(
     private postService:PostServiceService,
     private subReddotService:SubReddotService,
+    private router:Router,
     ) {
 
   }
@@ -47,5 +49,9 @@ export class HomeComponent {
         this.sort = 'date';
       });
     }
+  }
+
+  redirectToSubReddot(subReddot:Subreddot) {
+    this.router.navigate(['/subreddot', subReddot._id]);
   }
 }
