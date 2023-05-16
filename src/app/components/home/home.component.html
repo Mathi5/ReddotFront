@@ -11,7 +11,7 @@
   <div class="data-sr-container">
     <h2>Featured SubReddots</h2>
     <div class="subs">
-      <div *ngFor="let sub of featuredSubs" routerLink="/subreddot/{{sub._id}}">
+      <div *ngFor="let sub of featuredSubs" routerLink="/subreddot/{{sub._id}}" class="featured-sub">
         <img src="{{ sub?.icon }}" alt="Sub icon" class="subIcon">
         <h4>r/{{ sub?.name }}</h4>
       </div>

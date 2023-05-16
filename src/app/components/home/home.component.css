@@ -130,3 +130,9 @@ input:checked + .slider:before {
   margin: 10px;
   color: white;
 }
+
+.featured-sub {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
