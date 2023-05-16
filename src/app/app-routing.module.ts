@@ -41,7 +41,8 @@ const routes: Routes = [
   },
   {
     path: 'addSubreddot',
-    component: AddSubbreddotComponent
+    component: AddSubbreddotComponent,
+    canActivate: [ExpenseGuard]
   },
   {
     path: 'subreddot/:id',
@@ -50,6 +51,7 @@ const routes: Routes = [
   {
     path: 'addPost/:id',
     component: AddPostComponent,
+    canActivate: [ExpenseGuard]
   }
 ];
 
